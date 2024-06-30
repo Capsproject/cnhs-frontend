@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import LOGO from "../assets/logo.png";
-import { Card } from "antd";
+
 const navLinksAdmin = [
   {
     title: "Manage Account",
@@ -37,16 +37,16 @@ export const AdminLayout: React.FC = () => {
   return (
     <div className="w-screen h-screen relative">
       
-      <div className="w-[300px] h-screen bg-slate-200 fixed top-0 left-0 drop-shadow-md px-5 py-5">
-        <Card className="flex flex-col justify-center items-center mb-5 bg-orange-500">
+      <div className="w-[300px] h-screen bg-orange-500 fixed top-0 left-0 drop-shadow-md px-5 py-5">
+        
         <div className="w-full h-[60px] flex flex-row justify-center items-center gap-x-1 mb-5">
           <img src={LOGO} className="w-[50px]" alt="" />
           <h1 className="text-black text-sm font-medium">
           CINHS Student Portal
           </h1>
         </div>
-        </Card>
-        <Card className="bg-orange-500">
+    
+      
           <div className="flex flex-col gap-y-3 ">
           {navLinksAdmin.map((link)=>(
             <Link
@@ -58,7 +58,7 @@ export const AdminLayout: React.FC = () => {
           ))}
  
         </div>
-        </Card>
+  
 
         
       </div>
