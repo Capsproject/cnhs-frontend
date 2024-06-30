@@ -13,11 +13,11 @@ const navLinksAdmin = [
   },
   {
     title: "Anouncements",
-    to: "/dashboard/exams",
+    to: "/admin/manage-announcements",
   },
   {
     title: "Events",
-    to: "/dashboard/teacher-accounts",
+    to: "/admin/manage-event",
   },
   {
     title: "Feedback",
@@ -63,7 +63,7 @@ export const AdminLayout: React.FC = () => {
         
       </div>
 
-      <div className="w-full h-screen bg-slate-200 ml-[300px]">
+      <div className="h-screen bg-slate-200 ml-[300px] px-10 py-5">
         <div className="w-full h-[70px] flex items-center border-b-2 border-slate-800 px-5">
           <small className="">Dashboard &gt; Overview</small>
         </div>

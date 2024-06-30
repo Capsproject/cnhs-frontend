@@ -6,7 +6,7 @@ import { LoadComponent } from "../components/LoadComponent";
  * Layouts
  */
 import { AuthLayout, DashboardLayout, AdminLayout } from "../layouts";
-import ManageAccountPage from "@/views/admin/ManageAccountPage";
+
 
 /**
  * Error Pages
@@ -34,8 +34,16 @@ const DashboardPage = LoadComponent(
  * Admin Pages
  */
 const ManageAccPage = LoadComponent(
-  React.lazy(()=> import("../views/admin/ManageAccountPage"))
+  React.lazy(()=> import("../views/admin/accounts/ManageAccountPage"))
 );
+const ManageEventPage = LoadComponent(
+  React.lazy(() => import("../views/admin/events/ManageEventPage"))
+)
+const ManageAnnouncementPage = LoadComponent(
+  React.lazy(() => import("../views/admin/announcements/ManageAnnouncementPage"))
+)
+
+
 export default createBrowserRouter([
   {
     path: "*",
@@ -72,6 +80,14 @@ export default createBrowserRouter([
       {
         path: "/admin/manage-account",
         element: ManageAccPage,
+      },
+      {
+        path: "/admin/manage-event",
+        element: ManageEventPage
+      },
+      {
+        path: "/admin/manage-announcements",
+        element: ManageAnnouncementPage
       }
     ]
   }
