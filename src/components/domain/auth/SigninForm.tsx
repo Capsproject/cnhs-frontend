@@ -14,8 +14,8 @@ export const SigninForm: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col items-center gap-y-4">
-      <h1 className="text-center text-lg text-white font-medium">SIGN IN</h1>
-      <p className="text-xs text-slate-300">Provide your credentials</p>
+      <h1 className="text-center text-lg  font-bold">SIGN IN</h1>
+      <p className="text-xs">Provide your credentials</p>
 
       <form className="w-full flex flex-col gap-y-3" onSubmit={handleLogin}>
         <div className="flex flex-col gap-y-1">
@@ -48,7 +48,7 @@ export const SigninForm: React.FC = () => {
         </div>
         <button type="submit">SIGN IN</button>
         <div className="text-xs text-center mt-4">
-          <p className="text-white">
+          <p className="">
             Don't have an account?
             <a href="#" className="ml-1 hover:underline">
               Click here

@@ -5,7 +5,7 @@ import { Card } from "antd";
 const navLinksAdmin = [
   {
     title: "Manage Account",
-    to: "/dashboard/overview",
+    to: "/admin/manage-account",
   },
   {
     title: "Enrollment Status",
@@ -33,7 +33,7 @@ const navLinksAdmin = [
   }
 ]
 
-export const DashboardLayout: React.FC = () => {
+export const AdminLayout: React.FC = () => {
   return (
     <div className="w-screen h-screen relative">
       
@@ -51,7 +51,7 @@ export const DashboardLayout: React.FC = () => {
           {navLinksAdmin.map((link)=>(
             <Link
               to={link.to}
-              className="text-xs text-white hover:text-slate-700 hover:bg-orange-200 rounded-md p-3 focus:bg-orange-500 focus:text-white"
+              className="text-xs text-white hover:text-slate-700 hover:bg-orange-200 rounded-md p-3 focus:bg-orange-200 focus:text-slate-900"
             >
               {link.title}
             </Link>

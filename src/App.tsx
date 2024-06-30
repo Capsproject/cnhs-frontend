@@ -1,7 +1,7 @@
 import React from "react";
 
 const App: React.FC = () => {
-  return <div>Reactjs app</div>;
+  return <div className="bg-black">Reactjs app</div>;
 };
 
 export default App;
