@@ -17,10 +17,9 @@ export const AuthService = {
         .post("/auth/login", credentials)
         .then((response)=> {
             const { SET_AUTH_DATA } = useAuthStore.getState();
-            const { accessToken, user } = response.data;
+            const { token, user } = response.data;
 
-            SET_AUTH_DATA({ authToken: accessToken, user });
-
+            SET_AUTH_DATA({ authToken: token, user });
             setTimeout(() => {
                 window.location.href = "/dashboard";
             }, 5000);

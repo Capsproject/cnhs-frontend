@@ -1,7 +1,6 @@
 import React from "react";
 import DataTable from "react-data-table-component";
 import { useQuery } from "@tanstack/react-query";
-import { Badge } from "flowbite-react";
 import { LoadingPage } from "@/components/shared/LoadingPage";
 
 import { UserService } from "@/services/user.service";
@@ -54,7 +53,7 @@ const UsersManagementPage: React.FC = () => {
     {
       name: "Account Type",
       sortable: true,
-      selector: (row: any) => row.userRole.name,
+      selector: (row: any) => row.user_role.name,
     },
     {
       name: "Full Name",
@@ -65,22 +64,6 @@ const UsersManagementPage: React.FC = () => {
       name: "E-mail",
       sortable: true,
       selector: (row: any) => row.email,
-    },
-    {
-      name: "Username",
-      width: "300px",
-      sortable: true,
-      selector: (row: any) => row.username,
-    },
-    {
-      name: "Department",
-      sortable: true,
-      selector: (row: any) => row.department?.name || <Badge color="red">Unassigned</Badge>,
-    },
-    {
-      name: "Last login",
-      sortable: true,
-      selector: (row: any) => row.lastSignin || "--",
     },
     {
       name: "Actions",
@@ -99,10 +82,11 @@ const UsersManagementPage: React.FC = () => {
       },
     },
   ];
-
+  
   React.useEffect(() => {
     if (data) {
-      if (data.filter((user: any) => +user.userRoleId === 2).length > 0) {
+      console.log(data)
+      if (data.filter((user: any) => +user.user_role === 2).length > 0) {
         setDisableDc(true);
       }
     } else {

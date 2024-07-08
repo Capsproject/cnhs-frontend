@@ -18,7 +18,7 @@ export const UserService = {
 
     getUsersList: async function () {
         return await http
-        .get("admin/roles")
+        .get("admin/accounts")
         .then((response) => response.data)
         .catch((error) => {
             console.error(error);

@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/stores/auth.store";
 import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
 
 const baseURLS = {
@@ -19,9 +20,11 @@ instance.interceptors.request.use(
     /**
      * Set Headers
      */
+    const token = useAuthStore.getState().GET_AUTH_DATA().authToken;
     config.headers["Accept"] = "application/json";
     config.headers["Content-Type"] = "application/json";
     config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
+    config.headers["Authorization"] = `Bearer ${token}`;
     return config;
   },
   (error: AxiosError): Promise<AxiosError> => {
