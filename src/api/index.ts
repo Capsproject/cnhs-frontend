@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestCo
 
 const baseURLS = {
   // prod: "https://dclms-backend-nestjs-production.up.railway.app/api/v1",
-  local: "http://localhost:3000/api/v1",
+  local: "http://localhost:8000/api/v1",
 };
 
 console.log(import.meta.env.VITE_APP_APIENV);
@@ -21,7 +21,7 @@ instance.interceptors.request.use(
      */
     config.headers["Accept"] = "application/json";
     config.headers["Content-Type"] = "application/json";
-    // config.headers["Authorization"] = `Bearer ${localStorage.getItem("authToken")}`;
+    config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
     return config;
   },
   (error: AxiosError): Promise<AxiosError> => {

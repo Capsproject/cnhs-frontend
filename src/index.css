@@ -65,10 +65,10 @@ a {
     @apply text-blue-300;
 }
 
-input,
+/* input,
 button {
     @apply w-full h-[35px] bg-white border border-slate-600 rounded text-white text-xs focus:bg-slate-100 px-3;
-}
+} */
 
 button {
     @apply bg-orange-600 hover:bg-orange-300 hover:text-slate-600;

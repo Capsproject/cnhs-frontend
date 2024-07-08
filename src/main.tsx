@@ -15,6 +15,6 @@ ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
     <RouterProvider router={router} />
-    <ToastContainer theme="colored" position="top-center" />
+    <ToastContainer theme="colored" position="top-right"  />
   </QueryClientProvider>
 );

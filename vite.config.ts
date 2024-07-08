@@ -18,13 +18,5 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss, autoprefixer],
     },
-  },
-  server: {
-    proxy: {
-      "/api/v1": {
-        target: "https://localhost:8000/api/v1",
-        changeOrigin: true,
-      },
-    },
-  },
+  }
 });
