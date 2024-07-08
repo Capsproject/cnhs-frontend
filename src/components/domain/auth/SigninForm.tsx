@@ -1,19 +1,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import { AuthService } from "../../../services/auth.service";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 export const SigninForm: React.FC = () => {
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+
   const handleLogin = handleSubmit(async (formData: any) => {
-    console.log(formData);
+    setLoading(true);
+    await AuthService.authenticateCredentials(formData, setLoading).finally(() => {
+      reset();
+    })
   });
 
   return (
-    <div className="w-full flex flex-col items-center gap-y-4">
+    <>
+    {loading ? (
+      <div className="w-full flex flex-col items-center gap-y-4">
+      <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+    </svg>
+    Processing...
+      </div>
+    ) : (
+      <div className="w-full flex flex-col items-center gap-y-4">
       <h1 className="text-center text-lg  font-bold">SIGN IN</h1>
       <p className="text-xs">Provide your credentials</p>
 
@@ -29,13 +49,18 @@ export const SigninForm: React.FC = () => {
             <small className="text-xs text-red-400">E-mail is required</small>
           ) : null}
         </div>
-        <div className="flex flex-col gap-y-1">
+        <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Your password"
             className={errors.password ? "border border-red-400" : ""}
             {...register("password", { required: true })}
           />
+          <div className="absolute right-4 top-1">
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              </button>
+            </div>
           {errors.password ? (
             <small className="text-xs text-red-400">Password is required</small>
           ) : null}
@@ -57,5 +82,8 @@ export const SigninForm: React.FC = () => {
         </div>
       </form>
     </div>
+    )}
+  </>
+
   );
 };
