@@ -19,7 +19,7 @@ export const UserService = {
     getUsersList: async function () {
         return await http
         .get("admin/accounts")
-        .then((response) => response.data)
+        .then((response) => response.data.data)
         .catch((error) => {
             console.error(error);
             toast.error("Failed to fetch users list");
