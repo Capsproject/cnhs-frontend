@@ -27,7 +27,7 @@ export const UserService = {
     },
     deleteUser: async function (id: number) {
         return await http
-            .delete("/accounts/" + id)
+            .delete("/admin/accounts/" + id)
             .then((response) => {
             toast.info("Account successfully deleted/removed");
             return response.data;
@@ -42,7 +42,7 @@ export const UserService = {
         userData.departmentId = userData.departmentId ? +userData.departmentId : null;
     
         return await http
-            .post("/accounts", userData)
+            .post("/admin/accounts", userData)
             .then((response) => {
             toast.success("Account successfully created");
             closeModal();
@@ -59,7 +59,7 @@ export const UserService = {
         },
         updateUser: async function (id: number, userData: any) {
             return await http
-                .patch("/accounts/" + id, { ...userData, userRoleId: +userData.userRoleId, departmentId: +userData.departmentId })
+                .patch("/admin/accounts/" + id, { ...userData, userRoleId: +userData.userRoleId, departmentId: +userData.departmentId })
                 .then((response) => {
                     toast.info("Account successfully updated");
             
@@ -67,7 +67,6 @@ export const UserService = {
                 })
                 .catch((error) => {
                 console.log(error);
-        
                 toast.error("Failed to update user account");
                 });
             },

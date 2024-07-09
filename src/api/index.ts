@@ -6,7 +6,6 @@ const baseURLS = {
   local: "http://localhost:8000/api/v1",
 };
 
-console.log(import.meta.env.VITE_APP_APIENV);
 
 const instance: AxiosInstance = axios.create({
   // baseURL: "https://dclms-backend-nestjs-production.up.railway.app/api/v1",

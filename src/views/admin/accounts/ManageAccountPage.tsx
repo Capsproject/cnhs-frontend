@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { LoadingPage } from "@/components/shared/LoadingPage";
 import Table, {ColumnsType} from "antd/es/table";
 import { UserService } from "@/services/user.service";
 import { useDialog } from "@/hooks/use-dialog.hook";
@@ -9,6 +8,7 @@ import type { FormModal } from "@/types/shared";
 import { UserAccountFormModal } from "@/components/domain/users/UsersAccountModal";
 import { User } from "@/types/user";
 import { Button } from "antd";
+import { PageHeader } from "@/components/shared/PageHeader";
 
 const UsersManagementPage: React.FC = () => {
   const { showConfirm, closeConfirm, DialogComponent } = useDialog();
@@ -56,7 +56,6 @@ const UsersManagementPage: React.FC = () => {
       title: "Account Type", 
       key: "user_role",
       render: (row: any) => {
-        console.log(row)
         if (+row.user_role.id === 1) {
           return "Admin";
         } else if (+row.user_role.id === 2) {
@@ -105,7 +104,6 @@ const UsersManagementPage: React.FC = () => {
   
   React.useEffect(() => {
     if (data) {
-      console.log(data)
       if (data.filter((user: any) => +user.user_role === 2).length > 0) {
         setDisableDc(true);
       }
@@ -124,8 +122,8 @@ const UsersManagementPage: React.FC = () => {
         refetch={refetch}
         handleClose={() => handleFormModal({ show: false, selectedData: undefined })}
       />
-      
-        <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full">
+      <PageHeader title="Manage Users" />
+        <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
           <button className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm" onClick={() => handleFormModal({ show: true })}>
             Add User
           </button>
@@ -134,7 +132,7 @@ const UsersManagementPage: React.FC = () => {
           </button>
         </div>
       <div className="w-full min-h-[300px] bg-white border-t-2 border-gray-100">
-        <Table columns={tableColumns}  dataSource={data} loading={isFetching}/>
+        <Table columns={tableColumns}  dataSource={data} loading={isFetching} className="rounded-md"  />
       </div>
     </div>
   );

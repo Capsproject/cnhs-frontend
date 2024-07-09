@@ -9,7 +9,8 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
-  userRole: null;
+  user_role: null;
+
 };
 
 export type UserForm = {

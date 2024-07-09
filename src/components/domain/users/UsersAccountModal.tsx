@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const UserAccountFormModal: React.FC<Props> = (props) => {
-  const { handleSubmit, register, getValues, setValue, watch, reset } = useForm();
+  const { handleSubmit, register, setValue, reset } = useForm();
 
   console.log(props.disableDC);
 
@@ -110,17 +110,17 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
             {userRolesLoading ? (
               "Fetching account types ..."
             ) : (
-            //   <select {...register("userRoleId")} onChange={(e) => handleSelectUserRole(+e.target.value)} required>
-            //     <option value="">--</option>
-            //     {userRoles
-            //       .filter((userRole: any) => userRole.name !== "superadmin" && userRole.name !== "quality-management-representative")
-            //       .map((userRole: any) => (
-            //         <option value={userRole.id} key={userRole.name} hidden={props.disableDC && userRole.name === "document-controller"}>
-            //           {_.startCase(transformRoleLabel(userRole.name))}
-            //         </option>
-            //       ))}
-            //   </select>
-            <div></div>
+              <select {...register("user_role_id")} required>
+                <option value="">--</option>
+                {userRoles
+                  .filter((userRole: any) => userRole.name !== "superadmin")
+                  .map((userRole: any) => (
+                    <option value={userRole.id} key={userRole.name}>
+                      {_.startCase(userRole.name)}
+                    </option>
+                  ))}
+              </select>
+            
             )}
           </div>
 
