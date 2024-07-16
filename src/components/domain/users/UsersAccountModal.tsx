@@ -26,15 +26,13 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     queryFn: async () => await UserService.getUsersList(),
   });
 
-
-
   const [password, setPassword] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const [passwordStrength, setPasswordStrength] = React.useState<number>(0);
 
-
   const generateUniquePassword = (length: number = 16) => {
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-=_+";
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-=_+";
 
     let result = "";
     for (let i = 0; i < length; i++) {
@@ -53,8 +51,6 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     setPassword(password);
     setValue("password", password);
   };
-
-  
 
   const handleSetPasswordStrength = (strength: number) => {
     setPasswordStrength(strength);
@@ -77,13 +73,10 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     setLoading(false);
   });
 
-
-
   const handleCloseModal = () => {
     reset();
     props.handleClose();
   };
-
 
   React.useEffect(() => {
     // SET FORM VALUES BASED ON PROPS.DATA
@@ -91,7 +84,8 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
       for (const [key, value] of Object.entries(props.data)) {
         // @ts-ignore
         if (key === "userRole") setValue(key, props.data.userRole.id);
-        if (key === "email") setValue(key, props.data.email.toLowerCase().replace(/ /g, "-"));
+        if (key === "email")
+          setValue(key, props.data.email.toLowerCase().replace(/ /g, "-"));
         else setValue(key, value);
       }
     }
@@ -120,7 +114,6 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     </option>
                   ))}
               </select>
-            
             )}
           </div>
 
@@ -132,13 +125,12 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
             <input type="text" {...register("name")} required />
           </div>
 
-
           <div className="flex flex-col gap-2">
             <p className="text-sm">
               <span className="text-red-600 mr-1">*</span>
               E-mail
             </p>
-            <input type="email"  {...register("email")} required />
+            <input type="email" {...register("email")} required />
           </div>
 
           {props.formType === "add" ? (
@@ -147,17 +139,44 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 <span className="text-red-600 mr-1">*</span>
                 Default Password
               </p>
-              <input type="text" defaultValue={password} {...register("password")} onChange={(e) => setPassword(e.target.value)} required />
-              <button className="text-sm text-left text-blue-700 underline" type="button" onClick={handleCreatePassword}>
+              <input
+                type="text"
+                defaultValue={password}
+                {...register("password")}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                className="text-sm text-left text-blue-700 underline"
+                type="button"
+                onClick={handleCreatePassword}
+              >
                 Generate new password
               </button>
-              {password.length ? <PasswordStrengthBar password={password} onChangeScore={handleSetPasswordStrength} /> : null}
+              {password.length ? (
+                <PasswordStrengthBar
+                  password={password}
+                  onChangeScore={handleSetPasswordStrength}
+                />
+              ) : null}
             </div>
           ) : null}
 
           <div className="flex flex-row justify-end gap-3">
-            <Button color="success" type="submit" disabled={loading || (passwordStrength < 3 && props.formType === "add")}>
-              {loading ? <Spinner /> : props.formType === "add" ? "Create Account" : "Update Account"}
+            <Button
+              color="success"
+              type="submit"
+              disabled={
+                loading || (passwordStrength < 3 && props.formType === "add")
+              }
+            >
+              {loading ? (
+                <Spinner />
+              ) : props.formType === "add" ? (
+                "Create Account"
+              ) : (
+                "Update Account"
+              )}
             </Button>
             <Button color="light" onClick={handleCloseModal}>
               Close

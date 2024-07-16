@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import LOGO from "../assets/logo.png";
 import { Card } from "antd";
+import { useAuthStore } from "@/stores";
 const navLinksAdmin = [
   {
     title: "Manage Account",
@@ -34,6 +35,13 @@ const navLinksAdmin = [
 ]
 
 export const DashboardLayout: React.FC = () => {
+  const { IS_AUTHENTICATED } = useAuthStore();
+
+  React.useLayoutEffect(() => {
+    if(!IS_AUTHENTICATED()){
+      window.location.href = "/auth/signin";
+    }
+  }, [IS_AUTHENTICATED]);
   return (
     <div className="w-screen h-screen relative">
       

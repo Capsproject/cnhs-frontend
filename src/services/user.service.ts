@@ -59,7 +59,7 @@ export const UserService = {
         },
         updateUser: async function (id: number, userData: any) {
             return await http
-                .patch("/admin/accounts/" + id, { ...userData, userRoleId: +userData.userRoleId, departmentId: +userData.departmentId })
+                .patch("/admin/accounts/" + id, { ...userData, user_rple_id: +userData.user_role_id })
                 .then((response) => {
                     toast.info("Account successfully updated");
             
