@@ -1,5 +1,5 @@
-import { Card, Avatar, Button } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Card, Button } from "antd";
+import { EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import Meta from "antd/es/card/Meta";
 import { PageHeader } from "@/components/shared/PageHeader";
 import React from "react";
@@ -17,7 +17,7 @@ const ManageAnnouncementPage: React.FC = () => {
     show: false,
     selectedData: undefined,
   });
-  const annoouncementData = data
+  console.log(data)
   const handleFormModal = (data : FormModal) => {
     setFormModal(data);
   }
@@ -37,47 +37,30 @@ const ManageAnnouncementPage: React.FC = () => {
             Refresh list
           </button>
         </div>
-    {annoouncementData.map((data:any)=> {
-      <Card
-        style={{ width: 300 }}
-        cover={
-          <img
-            alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          />
-        }
-        actions= {[
-          <EditOutlined key="edit" />,
-          <EllipsisOutlined key="ellipsis" />,
-        ]}
-      >
-        <Meta
-          title={data.title}
-          description={data.description}
-        />
-      </Card>
-    })
-    }
-    <Card
-    style={{ width: 300 }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
-    actions={[
-      <SettingOutlined key="setting" />,
-      <EditOutlined key="edit" />,
-      <EllipsisOutlined key="ellipsis" />,
-    ]}
-  >
-    <Meta
-      // avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
-      title="Card title"
-      description="This is the description"
-    />
-  </Card>
+        <div className="flex flex-wrap gap-4">
+        {data && data.map((announcement: any) => (
+          <Card
+            key={announcement.id}
+            style={{ width: 300 }}
+            cover={
+              <img
+                alt="example"
+                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              />
+            }
+            actions={[
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}
+          >
+            <Card.Meta
+              title={announcement.title}
+              description={announcement.description}
+            />
+          </Card>
+        ))}
+      </div>
+    
   </>
   )
 }

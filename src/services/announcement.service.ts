@@ -12,7 +12,8 @@ export const AnnouncementService = {
             })
             .then((response) => {
                 toast.success("Announcement successfully created");
-                return response.data;
+                
+                return response.data.data;
             })
             .catch((error) => {
                 console.error(error);
