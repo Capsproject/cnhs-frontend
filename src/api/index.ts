@@ -3,7 +3,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestCo
 
 const baseURLS = {
   // prod: "https://dclms-backend-nestjs-production.up.railway.app/api/v1",
-  local: "http://localhost:8000/api/v1",
+  local: "https://mcbportal.cloud/api/v1",
 };
 
 
@@ -21,9 +21,11 @@ instance.interceptors.request.use(
      */
     const token = useAuthStore.getState().GET_AUTH_DATA().authToken;
     config.headers["Accept"] = "application/json";
-    config.headers["Content-Type"] = "application/json";
     config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
     config.headers["Authorization"] = `Bearer ${token}`;
+    if (config.data && !(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+    }
     return config;
   },
   (error: AxiosError): Promise<AxiosError> => {

@@ -13,20 +13,23 @@ type Props = {
 
 export const AnnouncementFormModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
   const handleFormSubmit = handleSubmit(async (data: any) => {
     setLoading(true);
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("message", data.message);
-    formData.append("file", data.file[0]);
-    console.log(data.file[0])
+    
     if (props.formType === "add") {
+        const formData = new FormData();
+        formData.append("title", data.title);
+        formData.append("message", data.message);
+        formData.append("image", data.image[0]);
+        console.log(data.image[0])
       await AnnouncementService.createAnnouncement(formData, setLoading);
+      reset();
       props.refetch();
     } else {
       // await AnnouncementService.updateAnnouncement(formData);
+      reset()
     }
     setLoading(false);
     props.handleClose();
@@ -78,7 +81,7 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
                   SVG, PNG, JPG or GIF (MAX. 800x400px)
                 </p>
               </div>
-              <input {...register("file")} type="file" className="hidden" />
+              <input {...register("image")} type="file" className="hidden" />
             </label>
           </div>
           <div className="flex flex-row justify-end gap-3">

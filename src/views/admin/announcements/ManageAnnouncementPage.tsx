@@ -17,7 +17,7 @@ const ManageAnnouncementPage: React.FC = () => {
     show: false,
     selectedData: undefined,
   });
-
+  const annoouncementData = data
   const handleFormModal = (data : FormModal) => {
     setFormModal(data);
   }
@@ -37,6 +37,27 @@ const ManageAnnouncementPage: React.FC = () => {
             Refresh list
           </button>
         </div>
+    {annoouncementData.map((data:any)=> {
+      <Card
+        style={{ width: 300 }}
+        cover={
+          <img
+            alt="example"
+            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          />
+        }
+        actions= {[
+          <EditOutlined key="edit" />,
+          <EllipsisOutlined key="ellipsis" />,
+        ]}
+      >
+        <Meta
+          title={data.title}
+          description={data.description}
+        />
+      </Card>
+    })
+    }
     <Card
     style={{ width: 300 }}
     cover={
@@ -52,7 +73,7 @@ const ManageAnnouncementPage: React.FC = () => {
     ]}
   >
     <Meta
-      avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
+      // avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
       title="Card title"
       description="This is the description"
     />

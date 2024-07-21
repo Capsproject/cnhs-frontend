@@ -70,4 +70,14 @@ export const UserService = {
                 toast.error("Failed to update user account");
                 });
             },
+
+            getUserRolesList: async function () {
+                return await http
+                    .get("admin/roles")
+                    .then((response) => response.data.data)
+                    .catch((error) => {
+                        console.error(error);
+                        toast.error("Failed to fetch user roles");
+                    });
+            },
 }

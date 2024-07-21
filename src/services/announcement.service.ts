@@ -1,14 +1,17 @@
 import http from "@/api/index"
+import { toast } from "react-toastify";
 export const AnnouncementService = {
     createAnnouncement: async function(announcementData: any, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
+        console.log("Hello Upload")
         console.log(announcementData);
         return await http
-            .post("admin/announcements", announcementData,{
+            .post("admin/announcements", announcementData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
             })
             .then((response) => {
+                toast.success("Announcement successfully created");
                 return response.data;
             })
             .catch((error) => {
@@ -18,7 +21,7 @@ export const AnnouncementService = {
     getAnnouncementsList: async function() {
         return await http
             .get("/admin/announcements")
-            .then((response) => response.data)
+            .then((response) => response.data.data)
             .catch((error) => {
                 console.error(error);
             })

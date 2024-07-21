@@ -114,14 +114,7 @@ const UsersManagementPage: React.FC = () => {
   return (
     <div>
       {DialogComponent}
-      <UserAccountFormModal
-        show={formModal.show}
-        formType={formModal.selectedData ? "update" : "add"}
-        data={formModal.selectedData}
-        disableDC={disableDc}
-        refetch={refetch}
-        handleClose={() => handleFormModal({ show: false, selectedData: undefined })}
-      />
+      
       <PageHeader title="Manage Users" />
         <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
           <button className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm" onClick={() => handleFormModal({ show: true })}>
@@ -134,7 +127,16 @@ const UsersManagementPage: React.FC = () => {
       <div className="w-full min-h-[300px] bg-white border-t-2 border-gray-100">
         <Table columns={tableColumns}  dataSource={data} loading={isFetching} className="rounded-md"  />
       </div>
+      <UserAccountFormModal
+        show={formModal.show}
+        formType={formModal.selectedData ? "update" : "add"}
+        data={formModal.selectedData}
+        disableDC={disableDc}
+        refetch={refetch}
+        handleClose={() => handleFormModal({ show: false, selectedData: undefined })}
+      />
     </div>
+    
   );
 };
 

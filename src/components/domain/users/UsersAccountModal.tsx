@@ -23,8 +23,11 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
 
   const { data: userRoles, isFetching: userRolesLoading } = useQuery({
     queryKey: ["data-user-roles"],
-    queryFn: async () => await UserService.getUsersList(),
+    queryFn: async () => await UserService.getUserRolesList(),
   });
+
+
+  
 
   const [password, setPassword] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -77,7 +80,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     reset();
     props.handleClose();
   };
-
+  console.log(userRoles)
   React.useEffect(() => {
     // SET FORM VALUES BASED ON PROPS.DATA
     if (props.data) {
