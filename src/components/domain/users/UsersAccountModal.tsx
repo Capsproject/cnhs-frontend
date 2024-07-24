@@ -19,7 +19,7 @@ type Props = {
 export const UserAccountFormModal: React.FC<Props> = (props) => {
   const { handleSubmit, register, setValue, reset } = useForm();
 
-  console.log(props.disableDC);
+
 
   const { data: userRoles, isFetching: userRolesLoading } = useQuery({
     queryKey: ["data-user-roles"],
@@ -61,7 +61,6 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
 
   const handleSubmitForm = handleSubmit(async (formData) => {
     setLoading(true);
-    console.log(formData);
     if (props.formType === "add") {
       reset();
       setValue("username", "");
@@ -80,7 +79,6 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     reset();
     props.handleClose();
   };
-  console.log(userRoles)
   React.useEffect(() => {
     // SET FORM VALUES BASED ON PROPS.DATA
     if (props.data) {

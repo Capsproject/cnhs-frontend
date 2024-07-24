@@ -9,8 +9,16 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
-  user_role: null;
-
+  user_role: {
+    id: number;
+    name: string;
+    description: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: null;
+  
+  };
+  
 };
 
 export type UserForm = {

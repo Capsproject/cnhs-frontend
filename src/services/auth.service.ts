@@ -20,9 +20,17 @@ export const AuthService = {
             const { token, user } = response.data;
 
             SET_AUTH_DATA({ authToken: token, user });
-            setTimeout(() => {
-                window.location.href = "/dashboard";
-            }, 5000);
+            toast.success("Login successful, redirecting...");
+            let userRole = useAuthStore.getState().GET_AUTH_DATA().user.user_role.name;
+            if(userRole === "superadmin") {
+                setTimeout(() => {
+                    window.location.href = "/admin";
+                }, 5000);
+            }else  {
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 5000);
+            }
         })
         .catch((error) => {
             if(error instanceof AxiosError) {

@@ -1,9 +1,8 @@
 import http from "@/api/index"
+import { Announcement } from "@/types/announcement";
 import { toast } from "react-toastify";
 export const AnnouncementService = {
-    createAnnouncement: async function(announcementData: any, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
-        console.log("Hello Upload")
-        console.log(announcementData);
+    createAnnouncement: async function(announcementData: Announcement, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
         return await http
             .post("admin/announcements", announcementData, {
                 headers: {
@@ -12,7 +11,6 @@ export const AnnouncementService = {
             })
             .then((response) => {
                 toast.success("Announcement successfully created");
-                
                 return response.data.data;
             })
             .catch((error) => {
