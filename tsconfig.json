@@ -1,4 +1,7 @@
 {
+  "path": {
+    "@/*": ["src/*"],
+  },
   "files": [],
   "references": [
     {
