@@ -1,8 +1,7 @@
-import { Modal } from "flowbite-react";
+import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { AnnouncementService } from "@/services/announcement.service";
-import { Button } from "antd";
 type Props = {
   show: boolean;
   formType: "add" | "update";
@@ -24,22 +23,23 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
         formData.append("message", data.message);
         formData.append("image", data.image[0]);
         console.log(data.image[0])
-      await AnnouncementService.createAnnouncement(formData, setLoading);
+      await AnnouncementService.createAnnouncement(formData);
       reset();
       props.refetch();
     } else {
-      // await AnnouncementService.updateAnnouncement(formData);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("message", data.message);
+      formData.append("image", data.image[0]);
+      await AnnouncementService.updateAnnouncement(formData);
       reset()
+      props.handleClose();
     }
     setLoading(false);
     props.handleClose();
   });
   return (
-    <Modal show={props.show} onClose={props.handleClose}>
-      <Modal.Header>
-        {props.formType === "add" ? "Create" : "Update"} Announcement
-      </Modal.Header>
-      <Modal.Body>
+    <Modal loading={loading} onClose={props.handleClose} open={props.show} title={props.formType === "add" ? "Create Announcement" : "Update Announcement"} onOk={handleFormSubmit} onCancel={props.handleClose} okText="Submit">
         <form className="flex flex-col gap-2" onSubmit={handleFormSubmit}>
           <div className="flex flex-col gap-2">
             <p className="text-sm">
@@ -67,9 +67,9 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
@@ -84,16 +84,7 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
               <input {...register("image")} type="file" className="hidden" />
             </label>
           </div>
-          <div className="flex flex-row justify-end gap-3">
-            <Button loading={loading} type="primary" htmlType="submit">
-              {props.formType === "add" ? "Create Announcement" : "Update Announcement"}
-            </Button>
-            <Button type="primary" danger onClick={props.handleClose}>
-              Close
-            </Button>
-          </div>
         </form>
-      </Modal.Body>
     </Modal>
   );
 };

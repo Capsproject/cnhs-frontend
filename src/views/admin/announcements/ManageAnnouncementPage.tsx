@@ -1,6 +1,5 @@
 import { Card, Button } from "antd";
-import { EditOutlined, EllipsisOutlined } from '@ant-design/icons';
-import Meta from "antd/es/card/Meta";
+import { EditOutlined, EllipsisOutlined, DeleteFilled } from '@ant-design/icons';
 import { PageHeader } from "@/components/shared/PageHeader";
 import React from "react";
 import { FormModal } from "@/types/shared";
@@ -9,6 +8,7 @@ import { AnnouncementService } from "@/services/announcement.service";
 import { AnnouncementFormModal } from "@/components/domain/announcement/AnnouncementFormModal";
 import { PlusSquareTwoTone } from "@ant-design/icons";
 import { Announcement } from "@/types/announcement";
+import { useDialog } from "@/hooks/use-dialog.hook";
 const ManageAnnouncementPage: React.FC = () => {
   const { data, isFetching, refetch } = useQuery({
     queryKey: ["data-announcements-list"],
@@ -27,9 +27,27 @@ const ManageAnnouncementPage: React.FC = () => {
       selectedData: announcementData,
     });
   };
+  const { showConfirm, closeConfirm, DialogComponent } = useDialog();
+  const handleDelete = (id: number) => {
+    showConfirm({
+      open: true,
+      title: "Confirm Deletion",
+      description: "Are you sure you want to delete this record?",
+      type: "danger",
+      onConfirm: async () => {
+        await AnnouncementService.deleteAnnouncement(id);
+        refetch();
+        closeConfirm();
+      },
+      onCancel: () => {
+        closeConfirm();
+      },
+    });
+  };
 
     return (
       <>
+      {DialogComponent}
         <PageHeader title="Manage Announcement" />
         <AnnouncementFormModal
           show={formModal.show}
@@ -55,30 +73,34 @@ const ManageAnnouncementPage: React.FC = () => {
             Refresh list
           </button>
         </div>
-        <div className="flex flex-wrap gap-4">
-          {data && data.map((announcement: any) => (
-            <Card
-              key={announcement.id}
-              style={{ width: 300 }}
-              cover={
-                <img
-                  alt="example"
-                  className="h-40 object-cover"
-                  src={announcement.banner_img}
+        <div className="over-flow-auto h-[80vh] md:overflow-auto sm:overflow-auto">
+          <div className="flex flex-wrap xl:gap-9 md:gap-4 justify-center gap-3 over-flow-auto  md:overflow-auto sm:overflow-auto">
+            {data && data.map((announcement: any) => (
+              <Card
+                key={announcement.id}
+                style={{ width: 350 }}
+                cover={
+                  <img
+                    alt="example"
+                    className="h-40 object-cover"
+                    src={announcement.banner_img}
+                  />
+                }
+                actions={[
+                  <EllipsisOutlined />,
+                  <EditOutlined onClick={() => handleUpdate(announcement)}/>,
+                  <DeleteFilled onClick={() => handleDelete(announcement.id)}/>
+                ]}
+              >
+                <Card.Meta
+                  title={announcement.title}
+                  description={announcement.message}
                 />
-              }
-              actions={[
-                <EditOutlined key="edit" onClick={() => handleUpdate(announcement.id)}/>,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              <Card.Meta
-                title={announcement.title}
-                description={announcement.message}
-              />
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
+        
       </>
     );
 }

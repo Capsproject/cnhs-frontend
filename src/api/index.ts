@@ -40,7 +40,9 @@ instance.interceptors.response.use(
   (error: AxiosError): Promise<AxiosError> => {
     if (error.response) {
       const { status } = error.response;
-
+      if (status === 401) {
+        window.location.href = "/auth/signin";
+      }
       if (status === 500) {
         console.error({
           message: "Error",

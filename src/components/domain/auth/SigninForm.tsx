@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { AuthService } from "../../../services/auth.service";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Spin } from "antd";
 export const SigninForm: React.FC = () => {
   const {
     register,
@@ -28,12 +29,13 @@ export const SigninForm: React.FC = () => {
     <>
     {loading ? (
       <div className="w-full flex flex-col items-center gap-y-4">
-      <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-    </svg>
-    Processing...
+        <Spin spinning={loading} />
       </div>
+
     ) : (
+      <>
       <div className="w-full flex flex-col items-center gap-y-4">
+       
       <h1 className="text-center text-lg  font-bold">SIGN IN</h1>
       <p className="text-xs">Provide your credentials</p>
 
@@ -42,7 +44,7 @@ export const SigninForm: React.FC = () => {
           <input
             type="text"
             placeholder="Your e-mail address"
-            className={errors.email ? "border border-red-400" : ""}
+            className={errors.email ? "border border-red-400" : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"}
             {...register("email", { required: true })}
           />
           {errors.email ? (
@@ -53,7 +55,7 @@ export const SigninForm: React.FC = () => {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Your password"
-            className={errors.password ? "border border-red-400" : ""}
+            className={errors.password ? "border border-red-400" : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"}
             {...register("password", { required: true })}
           />
           <div className="absolute right-4 top-1">
@@ -82,6 +84,7 @@ export const SigninForm: React.FC = () => {
         </div>
       </form>
     </div>
+    </>
     )}
   </>
 

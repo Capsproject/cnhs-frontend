@@ -8,10 +8,6 @@ export const AuthService = {
     requestOtp: async function (formData: { identifier: string }, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
         console.log({ formData, setLoading });
     },
-    // requestOtp: async funtion (formData: { identifier: string }, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
-    //     console.log({formData, setLoading});
-    // }
-
     authenticateCredentials: async function(credentials : credentials, setLoading: React.Dispatch<React.SetStateAction<boolean>>) {
         return await http
         .post("/auth/login", credentials)
@@ -24,7 +20,7 @@ export const AuthService = {
             let userRole = useAuthStore.getState().GET_AUTH_DATA().user.user_role.name;
             if(userRole === "superadmin") {
                 setTimeout(() => {
-                    window.location.href = "/admin";
+                    window.location.href = "/admin/manage-account";
                 }, 5000);
             }else  {
                 setTimeout(() => {
@@ -45,6 +41,6 @@ export const AuthService = {
     logOut() {
         const { CLEAR_AUTH_DATA } = useAuthStore.getState();
         CLEAR_AUTH_DATA();
-        window.location.href = "/auth/login";
+        window.location.href = "/auth/signin";
     }
 }
