@@ -6,7 +6,7 @@ import { FormModal } from "@/types/shared";
 import { useQuery } from "@tanstack/react-query";
 import { AnnouncementService } from "@/services/announcement.service";
 import { AnnouncementFormModal } from "@/components/domain/announcement/AnnouncementFormModal";
-import { PlusSquareTwoTone } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { Announcement } from "@/types/announcement";
 import { useDialog } from "@/hooks/use-dialog.hook";
 const ManageAnnouncementPage: React.FC = () => {
@@ -59,9 +59,8 @@ const ManageAnnouncementPage: React.FC = () => {
         <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
           <Button
             type="primary"
-            danger
-            className="bg-orange-500 active:bg-orange-300 hover:bg-orange-300"
-            icon={<PlusSquareTwoTone />}
+            className="bg-orange-500"
+            icon={<PlusCircleOutlined />}
             onClick={() => handleFormModal({ show: true })}
           >
             Add Announcement
