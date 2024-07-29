@@ -88,7 +88,14 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
   }, [props.data, setValue]);
 
   return (
-    <Modal open={props.show} loading={loading} onCancel={handleCloseModal} title="Account Details" okText={props.formType === "add" ? "Create Account" : "Update Account"} onOk={handleSubmitForm}>
+    <Modal
+      open={props.show}
+      loading={loading}
+      onCancel={handleCloseModal}
+      title="Account Details"
+      okText={props.formType === "add" ? "Create Account" : "Update Account"}
+      onOk={handleSubmitForm}
+    >
       <form className="flex flex-col gap-5">
         <div className="flex flex-col gap-2">
           <p className="text-sm">
@@ -99,51 +106,64 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
             "Fetching account types ..."
           ) : (
             <div className="inline-block relative w-64">
-              <select {...register("user_role_id")} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
-              <option value="">--</option>
-              {userRoles
-                .filter((userRole: any) => userRole.name !== "superadmin")
-                .map((userRole: any) => (
-                  <option className="block px-4 py-2 text-sm text-gray-700" value={userRole.id} key={userRole.name}>
-                    {_.startCase(userRole.name)}
-                  </option>
-                ))}
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-  </div>
+              <select
+                {...register("user_role_id")}
+                className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                required
+              >
+                <option value="">--</option>
+                {userRoles
+                  .filter((userRole: any) => userRole.name !== "superadmin")
+                  .map((userRole: any) => (
+                    <option
+                      className="block px-4 py-2 text-sm text-gray-700"
+                      value={userRole.id}
+                      key={userRole.name}
+                    >
+                      {_.startCase(userRole.name)}
+                    </option>
+                  ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
             </div>
-            
           )}
         </div>
         <div className="flex flex-wrap -mx-3 mb-1">
-              <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Full Name
-                </label>
-                <input
-                  className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  placeholder="Juan Dela Cruz"
-                  type="text"
-                  {...register("name")}
-                  required
-                />
-              </div>
-            </div>
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Full Name
+            </label>
+            <input
+              className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              placeholder="Juan Dela Cruz"
+              type="text"
+              {...register("name")}
+              required
+            />
+          </div>
+        </div>
         <div className="flex flex-wrap -mx-3 mb-1">
-              <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  placeholder="juandelacruz@domain.com"
-                  type="email"
-                  {...register("email")}
-                  required
-                />
-              </div>
-            </div>
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              placeholder="juandelacruz@domain.com"
+              type="email"
+              {...register("email")}
+              required
+            />
+          </div>
+        </div>
 
         {props.formType === "add" ? (
           <div className="flex flex-col gap-2">
