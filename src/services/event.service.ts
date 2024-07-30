@@ -1,7 +1,7 @@
 import http from "@/api/index"
 import { toast } from "react-toastify";
 export const EventService = {
-    createAnnouncement: async function(announcementData: any) {
+    createEvent: async function(announcementData: any) {
         return await http
             .post("admin/announcements", announcementData, {
                 headers: {
@@ -24,7 +24,7 @@ export const EventService = {
                 console.error(error);
             })
     },
-    updateAnnouncement: async function(announcementData: any) {
+    updateEvent: async function(announcementData: any) {
         return await http
             .patch("admin/announcements", announcementData, {
                 headers: {

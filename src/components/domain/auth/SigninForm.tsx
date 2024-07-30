@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { AuthService } from "../../../services/auth.service";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Spin } from "antd";
+import { Spin, Button } from "antd";
 export const SigninForm: React.FC = () => {
   const {
     register,
@@ -73,7 +73,7 @@ export const SigninForm: React.FC = () => {
             Forgot your password?
           </a>
         </div>
-        <button type="submit">SIGN IN</button>
+        <Button type="primary" htmlType="submit" block>Sign In</Button>
         <div className="text-xs text-center mt-4">
           <p className="">
             Don't have an account?
