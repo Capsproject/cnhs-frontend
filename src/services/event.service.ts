@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 export const EventService = {
     createEvent: async function(announcementData: any) {
         return await http
-            .post("admin/announcements", announcementData, {
+            .post("admin/events", announcementData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -16,9 +16,9 @@ export const EventService = {
                 console.error(error);
             })
     },
-    getAnnouncementsList: async function() {
+    geteventsList: async function() {
         return await http
-            .get("/admin/announcements")
+            .get("/admin/events")
             .then((response) => response.data.data)
             .catch((error) => {
                 console.error(error);
@@ -26,7 +26,7 @@ export const EventService = {
     },
     updateEvent: async function(announcementData: any) {
         return await http
-            .patch("admin/announcements", announcementData, {
+            .patch("admin/events", announcementData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -39,6 +39,17 @@ export const EventService = {
                 toast.error("Failed to update announcement");
                 console.error(error);
             })
+    },
+    deleteEvent: async function(id: number) {
+        return await http
+            .delete(`admin/events/${id}`)
+            .then((response) => {
+                toast.success("Event successfully deleted");
+                return response.data.data;
+            })
+            .catch((error) => {
+                toast.error("Failed to delete event");
+                console.error(error);
+            })
     }
-    
 }
