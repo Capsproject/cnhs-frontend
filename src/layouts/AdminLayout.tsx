@@ -26,7 +26,7 @@ const navLinksAdmin = [
   },
   {
     title: "Messages",
-    to: "/dashboard/events",
+    to: "/admin/messages",
   },
   {
     title: "Calendar",

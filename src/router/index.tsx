@@ -43,7 +43,12 @@ const ManageAnnouncementPage = LoadComponent(
   React.lazy(() => import("../views/admin/announcements/ManageAnnouncementPage"))
 )
 
-
+/**
+ * Messages Pages
+ */
+const MessagesPage = LoadComponent(
+  React.lazy(() => import("@/views/messages/Messages"))
+)
 export default createBrowserRouter([
   {
     path: "*",
@@ -71,6 +76,10 @@ export default createBrowserRouter([
         path: "/dashboard/overview",
         element: DashboardPage,
       },
+      {
+        path: "/dashboard/messages",
+        element: MessagesPage
+      }
     ],
   },
   {
@@ -88,6 +97,10 @@ export default createBrowserRouter([
       {
         path: "/admin/manage-announcements",
         element: ManageAnnouncementPage
+      },
+      {
+        path: "/admin/messages",
+        element: MessagesPage
       }
     ]
   }
