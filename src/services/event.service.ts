@@ -1,9 +1,9 @@
 import http from "@/api/index"
 import { toast } from "react-toastify";
 export const EventService = {
-    createEvent: async function(announcementData: any) {
+    createEvent: async function(eventsData: any) {
         return await http
-            .post("admin/events", announcementData, {
+            .post("admin/events", eventsData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -13,7 +13,11 @@ export const EventService = {
                 return response.data.data;
             })
             .catch((error) => {
-                console.error(error);
+                if(error.response.status === 500) {
+                    toast.error("Failed to create announcement");
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
     },
     geteventsList: async function() {
@@ -21,7 +25,11 @@ export const EventService = {
             .get("/admin/events")
             .then((response) => response.data.data)
             .catch((error) => {
-                console.error(error);
+                if(error.response.status === 500) {
+                    toast.error("Failed to fetch event");
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
     },
     updateEvent: async function(announcementData: any) {
