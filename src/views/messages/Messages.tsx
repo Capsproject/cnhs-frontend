@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/shared/PageHeader";
-import { Button, Card } from "antd";
+import { Button } from "antd";
 import React from "react";
 
 const MessagesPage: React.FC = () => {

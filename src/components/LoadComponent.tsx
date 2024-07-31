@@ -8,3 +8,4 @@ export const LoadComponent = (Component: React.ComponentType) => {
     </React.Suspense>
   );
 };
+
