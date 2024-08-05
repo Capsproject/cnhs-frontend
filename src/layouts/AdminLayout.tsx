@@ -26,12 +26,18 @@ const navLinksAdmin = [
   },
   {
     title: "Messages",
+
     to: "/admin/messages",
+  },
+  {
+    title: "About",
+    to: "/admin/about"
   },
   {
     title: "Calendar",
     to: "/dashboard/calendar",
-  }
+  },
+  
 ]
 
 export const AdminLayout: React.FC = () => {
