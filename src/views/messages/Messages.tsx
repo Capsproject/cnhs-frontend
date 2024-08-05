@@ -6,7 +6,7 @@ const MessagesPage: React.FC = () => {
   return (
     <>
       <PageHeader title="Messages" />
-      <div className="flex flex-row antialiased text-gray-800 rounded-lg">
+      <div className="flex flex-row antialiased h-[90vh] text-gray-800 rounded-lg">
         <div className="flex flex-row w-96 flex-shrink-0 bg-gray-100 p-4">
           <div className="flex flex-col w-full h-full pl-4 pr-4 py-4 -mr-4">
             <div className="flex flex-row items-center">
