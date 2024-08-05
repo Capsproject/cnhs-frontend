@@ -21,6 +21,9 @@ const ErrorPage = LoadComponent(
 const SigninPage = LoadComponent(
   React.lazy(() => import("../views/auth/SigninPage"))
 );
+const VerifyOTPPage = LoadComponent(
+  React.lazy(() => import("@/views/auth/VerifyOtpPage"))
+);
 
 /**
  * Dashboard Pages
@@ -50,6 +53,13 @@ const AboutPage = LoadComponent(
   React.lazy(() => import("@/views/about/AboutPage"))
 )
 
+
+ * Messages Pages
+ */
+const MessagesPage = LoadComponent(
+  React.lazy(() => import("@/views/messages/Messages"))
+)
+
 export default createBrowserRouter([
   {
     path: "*",
@@ -67,6 +77,10 @@ export default createBrowserRouter([
         path: "/auth/signin",
         element: SigninPage,
       },
+      {
+        path: "/auth/verify-otp",
+        element: VerifyOTPPage
+      }
     ],
   },
   {
@@ -77,6 +91,10 @@ export default createBrowserRouter([
         path: "/dashboard/overview",
         element: DashboardPage,
       },
+      {
+        path: "/dashboard/messages",
+        element: MessagesPage
+      }
     ],
   },
   {

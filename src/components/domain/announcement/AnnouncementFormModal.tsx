@@ -1,3 +1,4 @@
+
 import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -12,7 +13,7 @@ type Props = {
 
 export const AnnouncementFormModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register, reset, formState: { errors} } = useForm();
 
   const handleFormSubmit = handleSubmit(async (data: any) => {
     setLoading(true);
@@ -45,7 +46,9 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
             <p className="text-sm">
               <span className="text-red-600 mr-1">*</span> Title
             </p>
-            <input type="text" {...register("title")} required />
+            
+            <input className={errors.email ? "border border-red-400" : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"}
+            {...register("title", { required: true })} type="text"  required />
           </div>
 
           <div className="flex flex-col gap-2">
@@ -83,7 +86,9 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
               </div>
               <input {...register("image")} type="file" className="hidden" />
             </label>
+
           </div>
+          
         </form>
     </Modal>
   );

@@ -1,9 +1,9 @@
 import http from "@/api/index"
 import { toast } from "react-toastify";
 export const EventService = {
-    createAnnouncement: async function(announcementData: any) {
+    createEvent: async function(eventsData: any) {
         return await http
-            .post("admin/announcements", announcementData, {
+            .post("admin/events", eventsData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -13,20 +13,28 @@ export const EventService = {
                 return response.data.data;
             })
             .catch((error) => {
-                console.error(error);
+                if(error.response.status === 500) {
+                    toast.error("Failed to create announcement");
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
     },
-    getAnnouncementsList: async function() {
+    geteventsList: async function() {
         return await http
-            .get("/admin/announcements")
+            .get("/admin/events")
             .then((response) => response.data.data)
             .catch((error) => {
-                console.error(error);
+                if(error.response.status === 500) {
+                    toast.error("Failed to fetch event");
+                } else {
+                    toast.error(error.response.data.message);
+                }
             })
     },
-    updateAnnouncement: async function(announcementData: any) {
+    updateEvent: async function(announcementData: any) {
         return await http
-            .patch("admin/announcements", announcementData, {
+            .patch("admin/events", announcementData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -39,6 +47,17 @@ export const EventService = {
                 toast.error("Failed to update announcement");
                 console.error(error);
             })
+    },
+    deleteEvent: async function(id: number) {
+        return await http
+            .delete(`admin/events/${id}`)
+            .then((response) => {
+                toast.success("Event successfully deleted");
+                return response.data.data;
+            })
+            .catch((error) => {
+                toast.error("Failed to delete event");
+                console.error(error);
+            })
     }
-    
 }

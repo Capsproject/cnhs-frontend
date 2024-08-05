@@ -26,7 +26,8 @@ const navLinksAdmin = [
   },
   {
     title: "Messages",
-    to: "/dashboard/messages",
+
+    to: "/admin/messages",
   },
   {
     title: "About",
