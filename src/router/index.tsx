@@ -53,7 +53,7 @@ const AboutPage = LoadComponent(
   React.lazy(() => import("@/views/about/AboutPage"))
 )
 
-
+/**
  * Messages Pages
  */
 const MessagesPage = LoadComponent(
