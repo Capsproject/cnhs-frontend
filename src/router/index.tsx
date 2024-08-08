@@ -116,6 +116,10 @@ export default createBrowserRouter([
       {
         path: "/admin/about",
         element: AboutPage
+      },
+      {
+        path: "/admin/messages",
+        element: MessagesPage
       }
     ]
   }
