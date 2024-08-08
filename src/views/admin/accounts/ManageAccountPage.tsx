@@ -114,7 +114,6 @@ const UsersManagementPage: React.FC = () => {
   return (
     <div>
       {DialogComponent}
-      
       <PageHeader title="Manage Users" />
         <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
           <button className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm" onClick={() => handleFormModal({ show: true })}>
