@@ -50,7 +50,10 @@ const AccountSetting = LoadComponent(
 )
 const FeedbacksPage = LoadComponent(
   React.lazy(() => import("@/views/admin/feedbacks/FeedbacksPage"))
+)const AccountSetting = LoadComponent(
+  React.lazy(() => import("@/views/admin/accounts/AccountSettingPage"))
 )
+
 /**
  * About
  */
@@ -132,6 +135,10 @@ export default createBrowserRouter([
       {
         path: "/admin/feedbacks",
         element: FeedbacksPage
+      },
+      {
+        path: "/admin/account-setting:userId",
+        element: AccountSetting
       },
       {
         path: "/admin/account-setting:userId",
