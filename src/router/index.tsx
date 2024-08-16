@@ -45,7 +45,9 @@ const ManageEventPage = LoadComponent(
 const ManageAnnouncementPage = LoadComponent(
   React.lazy(() => import("../views/admin/announcements/ManageAnnouncementPage"))
 )
-
+const FeedbacksPage = LoadComponent(
+  React.lazy(() => import("@/views/admin/feedbacks/FeedbacksPage"))
+)
 /**
  * About
  */
@@ -116,6 +118,14 @@ export default createBrowserRouter([
       {
         path: "/admin/about",
         element: AboutPage
+      },
+      {
+        path: "/admin/messages",
+        element: MessagesPage
+      },
+      {
+        path: "/admin/feedbacks",
+        element: FeedbacksPage
       }
     ]
   }

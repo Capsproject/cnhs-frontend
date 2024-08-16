@@ -11,7 +11,6 @@ export type ConfirmDialogProps = {
   onCancel: () => void;
 };
 export const ConfirmDialog: React.FC<ConfirmDialogProps> = (props) => {
-  console.log(props.confirmText);
   return (
     <Modal open={props.open} onClose={props.onCancel} title={props.title} okText={props.title} onOk={props.onConfirm} onCancel={props.onCancel} okType={props.type}>
         <p className="text-sm text-gray-700">{props.description}</p>

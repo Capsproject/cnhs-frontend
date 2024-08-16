@@ -23,7 +23,6 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
         formData.append("title", data.title);
         formData.append("message", data.message);
         formData.append("image", data.image[0]);
-        console.log(data.image[0])
       await AnnouncementService.createAnnouncement(formData);
       reset();
       props.refetch();
