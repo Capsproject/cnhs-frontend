@@ -145,7 +145,7 @@ const AccountSettingPage: React.FC = () => {
                       <span className="mb-1.5 text-black dark:text-white">
                         Edit your photo
                       </span>
-                      <span className="flex gap-2.5">
+                      <span className="flex gap-2">
                         <Button
                           className="button flex justify-center rounded border border-stroke py-2 px-6 font-medium text-white hover:shadow-1 hover:text-slate-9000 dark:border-strokedark dark:text-slate"
                           type="primary"
@@ -210,7 +210,7 @@ const AccountSettingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-end gap-4 mt-2">
+                  <div className="flex justify-end gap-2 mt-2">
                   <Button
                       className="button flex justify-center rounded border border-stroke py-2 px-6 font-medium text-white hover:shadow-1 hover:text-slate-9000 dark:border-strokedark dark:text-slate"
                       type="primary" danger
