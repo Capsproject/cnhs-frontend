@@ -17,7 +17,6 @@ export const PageHeader: React.FC<Props> = (props) => {
     const isAdmin = () => {
         return userRole?.name === "superadmin";
     }
-
     React.useEffect(() => {
         if(props.breadcrumbs) {
             props.breadcrumbs.forEach((crumb) => breadcrumbsItems.push(crumb))

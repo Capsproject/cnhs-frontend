@@ -114,7 +114,7 @@ const UsersManagementPage: React.FC = () => {
   return (
     <div>
       {DialogComponent}
-      <PageHeader title="Manage Users" />
+      <PageHeader title="Manage Account" />
         <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
           <button className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm" onClick={() => handleFormModal({ show: true })}>
             Add User
@@ -123,8 +123,8 @@ const UsersManagementPage: React.FC = () => {
             Refresh list
           </button>
         </div>
-      <div className="w-full min-h-[300px] bg-white border-t-2 border-gray-100">
-        <Table columns={tableColumns}  dataSource={data} loading={isFetching} className="rounded-md"  />
+      <div className="min:h-[400px] bg-white border-t-2 border-gray-100">
+        <Table columns={tableColumns}  dataSource={data} loading={isFetching}  />
       </div>
       <UserAccountFormModal
         show={formModal.show}

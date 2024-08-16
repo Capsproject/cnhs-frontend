@@ -36,7 +36,6 @@ export const EventFormModal: React.FC<Props> = (props) => {
     formData.append("image",  selectedBanner);
     formData.append("event_date", selectedDate);
     formData.append("event_time", selectedTime);
-    console.log(data.image[0]);
     if (props.formType === "add") {
       await EventService.createEvent(formData);
       reset();
@@ -74,7 +73,6 @@ export const EventFormModal: React.FC<Props> = (props) => {
   const  [selectedTime, setSelectedTime] =React.useState<any>();
   const handleTimeChange: TimePickerProps['onChange'] = (time) => {
     setSelectedTime(time?.format('HH:mm a'));
-    console.log(selectedTime);
   };
   return (
     <Modal
