@@ -45,6 +45,9 @@ const ManageEventPage = LoadComponent(
 const ManageAnnouncementPage = LoadComponent(
   React.lazy(() => import("../views/admin/announcements/ManageAnnouncementPage"))
 )
+const AccountSetting = LoadComponent(
+  React.lazy(() => import("@/views/admin/accounts/AccountSettingPage"))
+)
 
 /**
  * About
@@ -59,6 +62,9 @@ const AboutPage = LoadComponent(
 const MessagesPage = LoadComponent(
   React.lazy(() => import("@/views/messages/Messages"))
 )
+
+
+
 
 export default createBrowserRouter([
   {
@@ -116,6 +122,10 @@ export default createBrowserRouter([
       {
         path: "/admin/about",
         element: AboutPage
+      },
+      {
+        path: "/admin/account-setting:userId",
+        element: AccountSetting
       }
     ]
   }
