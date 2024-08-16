@@ -50,9 +50,8 @@ const AccountSetting = LoadComponent(
 )
 const FeedbacksPage = LoadComponent(
   React.lazy(() => import("@/views/admin/feedbacks/FeedbacksPage"))
-)const AccountSetting = LoadComponent(
-  React.lazy(() => import("@/views/admin/accounts/AccountSettingPage"))
 )
+
 
 /**
  * About
