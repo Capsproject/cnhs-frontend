@@ -140,7 +140,7 @@ export default createBrowserRouter([
         element: AccountSetting
       },
       {
-        path: "/admin/account-setting:userId",
+        path: "/admin/account-setting/:userId",
         element: AccountSetting
       }
     ]
