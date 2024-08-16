@@ -9,11 +9,13 @@ import { AnnouncementFormModal } from "@/components/domain/announcement/Announce
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Announcement } from "@/types/announcement";
 import { useDialog } from "@/hooks/use-dialog.hook";
+import logo from "@/assets/logo.png";
 const ManageAnnouncementPage: React.FC = () => {
   const { data, isFetching, refetch } = useQuery({
     queryKey: ["data-announcements-list"],
     queryFn: async () => await AnnouncementService.getAnnouncementsList(),
   })
+  
   const [formModal, setFormModal] = React.useState<FormModal>({
     show: false,
     selectedData: undefined,
