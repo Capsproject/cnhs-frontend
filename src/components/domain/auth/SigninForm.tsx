@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { useForm } from "react-hook-form";
 import { AuthService } from "../../../services/auth.service";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Spin, Button } from "antd";
+import { Link } from "react-router-dom";
 export const SigninForm: React.FC = () => {
   const {
     register,
@@ -59,22 +61,6 @@ export const SigninForm: React.FC = () => {
                   </small>
                 ) : null}
               </div>
-              {/* <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Your password"
-            className={errors.password ? "border border-red-400" : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"}
-            {...register("password", { required: true })}
-          />
-          <div className="absolute right-4 top-1">
-              <button type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
-              </button>
-            </div>
-          {errors.password ? (
-            <small className="text-xs text-red-400">Password is required</small>
-          ) : null}
-        </div> */}
               <div>
                 <div className="relative">
                   <input
@@ -107,21 +93,25 @@ export const SigninForm: React.FC = () => {
               </div>
 
               <div className="flex justify-end">
-                <a href="#" className="text-xs font-light">
-                  Forgot your password?
-                </a>
+                Don't have an account?
+                  <Link
+                    to="/auth/request-otp"
+                    className="text-blue-600 underline mt-8"
+                  >
+                    Forgot your password?
+                  </Link>
               </div>
               <Button type="primary" htmlType="submit" block>
                 Sign In
               </Button>
-              <div className="text-xs text-center mt-4">
+              {/* <div className="text-xs text-center mt-4">
                 <p className="">
                   Don't have an account?
                   <a href="#" className="ml-1 hover:underline">
                     Click here
                   </a>
                 </p>
-              </div>
+              </div> */}
             </form>
           </div>
         </>
