@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 type Props = {
     onLinkClick?: () => void;
-    items: any[];
+      items: any[];
 }
 
 

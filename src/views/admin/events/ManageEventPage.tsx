@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { EventService } from "@/services/event.service";
 import { useDialog } from "@/hooks/use-dialog.hook";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Card, Button } from "antd";
-import { DeleteFilled, PlusCircleOutlined } from "@ant-design/icons";
+import { DeleteFilled, PlusCircleOutlined, EditOutlined } from "@ant-design/icons";
 import { EventFormModal } from "@/components/domain/events/EventModal";
 import { FormModal } from "@/types/shared";
 
 
 const ManageEventPage: React.FC = () => {
-  const { data, isFetching, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["data-events-list"],
     queryFn: async () => await EventService.geteventsList(),
   });
@@ -20,6 +21,13 @@ const ManageEventPage: React.FC = () => {
     selectedData: undefined,
   });
   const { showConfirm, closeConfirm, DialogComponent } = useDialog();
+  const handleUpdate = (eventData: any) => {
+    console.log(eventData);
+    handleFormModal({
+      show: true,
+      selectedData: eventData,
+    });
+  }
   const handleDelete = (id: number) => {
     showConfirm({
       open: true,
@@ -77,6 +85,7 @@ const ManageEventPage: React.FC = () => {
                 style={{ width: 300 }}
                 cover={<img alt="example" src={event.banner_img} className="h-40 object-cover" />}
                 actions={[
+                  <EditOutlined onClick={() => handleUpdate(event)}/>,
                   <DeleteFilled onClick={() => handleDelete(event.id)} />,
                 ]}
               >

@@ -9,6 +9,7 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
+  profile: string;
   user_role: {
     id: number;
     name: string;

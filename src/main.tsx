@@ -13,10 +13,23 @@ import { ConfigProvider } from "antd";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
+  // const buttonCss = css` &.${rootPrefixCls}-btn-primary:not([disabled]):not(.${rootPrefixCls}-btn-dangerous) {
+  //   &:hover {
+  //     color: red
+  //   }
+  // }`  
   <ConfigProvider theme={{
     token: {
     "colorPrimary": "#fb923c",
     "colorInfo": "#fb923c",
+    "colorPrimaryHover": "#fed7aa",
+    "colorPrimaryTextHover": "", 
+    },
+    components: {
+      Button: {
+        textHoverBg: "black",
+        colorPrimaryTextHover: "black",
+      }
     }
   }}>
   <QueryClientProvider client={queryClient}>

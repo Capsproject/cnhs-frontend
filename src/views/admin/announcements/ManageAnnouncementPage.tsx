@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, Button } from "antd";
-import { EditOutlined, EllipsisOutlined, DeleteFilled } from '@ant-design/icons';
+import { EditOutlined, DeleteFilled } from '@ant-design/icons';
 import { PageHeader } from "@/components/shared/PageHeader";
 import React from "react";
 import { FormModal } from "@/types/shared";
@@ -10,10 +11,11 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Announcement } from "@/types/announcement";
 import { useDialog } from "@/hooks/use-dialog.hook";
 const ManageAnnouncementPage: React.FC = () => {
-  const { data, isFetching, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["data-announcements-list"],
     queryFn: async () => await AnnouncementService.getAnnouncementsList(),
   })
+  
   const [formModal, setFormModal] = React.useState<FormModal>({
     show: false,
     selectedData: undefined,
@@ -22,6 +24,7 @@ const ManageAnnouncementPage: React.FC = () => {
     setFormModal(data);
   }
   const handleUpdate = (announcementData: Announcement) => {
+    console.log(announcementData);
     handleFormModal({
       show: true,
       selectedData: announcementData,
@@ -86,7 +89,6 @@ const ManageAnnouncementPage: React.FC = () => {
                   />
                 }
                 actions={[
-                  <EllipsisOutlined />,
                   <EditOutlined onClick={() => handleUpdate(announcement)}/>,
                   <DeleteFilled onClick={() => handleDelete(announcement.id)}/>
                 ]}

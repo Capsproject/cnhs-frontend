@@ -5,10 +5,6 @@ import { Card } from "antd";
 import { useAuthStore } from "@/stores";
 const navLinksAdmin = [
   {
-    title: "Manage Account",
-    to: "/dashboard/overview",
-  },
-  {
     title: "Enrollment Status",
     to: "/dashboard/quizzes",
   },
@@ -26,7 +22,7 @@ const navLinksAdmin = [
   },
   {
     title: "Messages",
-    to: "/dashboard/events",
+    to: "/dashboard/messages",
   },
   {
     title: "Calendar",
