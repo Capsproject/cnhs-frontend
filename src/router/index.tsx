@@ -25,6 +25,9 @@ const SigninPage = LoadComponent(
 const VerifyOTPPage = LoadComponent(
   React.lazy(() => import("@/views/auth/VerifyOtpPage"))
 );
+const RequestOtpPage = LoadComponent(
+  React.lazy(() => import("@/views/auth/RequestOtpPage"))
+)
 
 /**
  * Dashboard Pages
@@ -91,6 +94,10 @@ export default createBrowserRouter([
       {
         path: "/auth/verify-otp",
         element: VerifyOTPPage
+      },
+      {
+        path: "/auth/request-otp",
+        element: RequestOtpPage
       }
     ],
   },
