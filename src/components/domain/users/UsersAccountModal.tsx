@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import _ from "lodash";
 import PasswordStrengthBar from "react-password-strength-bar";
@@ -78,8 +80,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
     // SET FORM VALUES BASED ON PROPS.DATA
     if (props.data) {
       for (const [key, value] of Object.entries(props.data)) {
-        // @ts-ignore
-        if (key === "userRole") setValue(key, props.data.userRole.id);
+        if (key === "userRole") setValue(key, props.data.userRoleId);
         if (key === "email")
           setValue(key, props.data.email.toLowerCase().replace(/ /g, "-"));
         else setValue(key, value);

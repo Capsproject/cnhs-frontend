@@ -18,9 +18,8 @@ export const PageHeader: React.FC<Props> = (props) => {
     return userRole?.name === "superadmin";
   };
   const navigateToAccountSetting= () => {
-    let userId = useAuthStore.getState().user?.id;
     if(isAdmin()) {
-      window.location.href = "/admin/account-setting/" + userId;
+      window.location.href = "/admin/account-setting/";
     }
   }
   React.useEffect(() => {

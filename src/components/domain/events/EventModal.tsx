@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventService } from "@/services/event.service";
-import { DatePicker, DatePickerProps, Modal, TimePicker, TimePickerProps } from "antd";
+import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
-import type { Dayjs } from 'dayjs';
 
 type Props = {
   show: boolean;
@@ -18,6 +18,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
     handleSubmit,
     register,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   const closeModal = () => {
@@ -34,8 +35,8 @@ export const EventFormModal: React.FC<Props> = (props) => {
     formData.append("title", data.title);
     formData.append("message", data.message);
     formData.append("image",  selectedBanner);
-    formData.append("event_date", selectedDate);
-    formData.append("event_time", selectedTime);
+    formData.append("event_date", data.event_date);
+    formData.append("event_time", data.event_time);
     if (props.formType === "add") {
       await EventService.createEvent(formData);
       reset();
@@ -66,14 +67,14 @@ export const EventFormModal: React.FC<Props> = (props) => {
       setSelectedImage(null);
     }
   };
-  const [selectedDate, setSelectedDate] = React.useState<any>();
-  const handleDateChange : DatePickerProps<Dayjs[]>['onChange'] = (date) =>{
-    setSelectedDate(date.toLocaleString());
-  };
-  const  [selectedTime, setSelectedTime] =React.useState<any>();
-  const handleTimeChange: TimePickerProps['onChange'] = (time) => {
-    setSelectedTime(time?.format('HH:mm a'));
-  };
+  React.useEffect(() => {
+    if (props.data) {
+      for (const [key, value] of Object.entries(props.data)){
+        setValue(key, value);
+      }
+      setSelectedImage(props.data.banner_img);
+    }
+  }, [props.data, setValue])
   return (
     <Modal
       loading={loading}
@@ -118,9 +119,38 @@ export const EventFormModal: React.FC<Props> = (props) => {
             <small className="text-xs text-red-400">Description is required</small>
           ) : null}
         </div>
-        <div className="flex items-center w-full gap-5 justify-around flex-wrap">
-          <DatePicker onChange={handleDateChange} needConfirm size="large"/>
-          <TimePicker onChange={handleTimeChange} use12Hours size="large"/>
+        <div className="flex items-center w-full gap-5 justify-between flex-wrap">
+        <div className="flex flex-row gap-2">
+          <input
+            className={
+              errors.message
+                ? "border border-red-400"
+                : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            }
+            placeholder="Event Date"
+            {...register("event_date", { required: true })}
+            type="date"
+            required
+          />
+          {errors.title ? (
+            <small className="text-xs text-red-400">Date is required</small>
+          ) : null}
+          <input
+            className={
+              errors.message
+                ? "border border-red-400"
+                : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            }
+            placeholder="Event Time"
+            {...register("event_time", { required: true })}
+            type="time"
+            value={props.data?.event_time}
+            required
+          />
+          {errors.title ? (
+            <small className="text-xs text-red-400">Date is required</small>
+          ) : null}
+        </div>
         </div>
         <h1>Upload File</h1>
         <div className="flex items-center justify-center w-full">
@@ -163,6 +193,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
               {...register("image")}
               type="file"
               className="hidden"
+              id="imageSelect"
               onChange={handleImageChange} 
             />
           </label>
@@ -170,7 +201,6 @@ export const EventFormModal: React.FC<Props> = (props) => {
             <small className="text-xs text-red-400">Image is required</small>
           ) : null}
         </div>
-        
       </form>
     </Modal>
   );

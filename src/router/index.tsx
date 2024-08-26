@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { LoadComponent } from "../components/LoadComponent";
@@ -46,7 +47,7 @@ const ManageAnnouncementPage = LoadComponent(
   React.lazy(() => import("../views/admin/announcements/ManageAnnouncementPage"))
 )
 const AccountSetting = LoadComponent(
-  React.lazy(() => import("@/views/admin/accounts/AccountSettingPage"))
+  React.lazy(() => import("@/components/domain/account/AccountSettingPage"))
 )
 const FeedbacksPage = LoadComponent(
   React.lazy(() => import("@/views/admin/feedbacks/FeedbacksPage"))
@@ -136,11 +137,7 @@ export default createBrowserRouter([
         element: FeedbacksPage
       },
       {
-        path: "/admin/account-setting:userId",
-        element: AccountSetting
-      },
-      {
-        path: "/admin/account-setting/:userId",
+        path: "/admin/account-setting",
         element: AccountSetting
       }
     ]
