@@ -10,7 +10,6 @@ export const roleUtils = {
       //
     }
 
-    // @ts-ignore
-    return user?.userRole.name === role.toLowerCase();
+    return user?.user_role.name === role;
   },
 };

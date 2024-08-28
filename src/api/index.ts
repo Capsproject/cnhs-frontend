@@ -41,6 +41,7 @@ instance.interceptors.response.use(
     if (error.response) {
       const { status } = error.response;
       if (status === 401) {
+        console.error('Unauthorized');
         window.location.href = "/auth/signin";
       }
       if (status === 500) {
