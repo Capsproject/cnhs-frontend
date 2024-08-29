@@ -5,12 +5,18 @@ import { EventService } from "@/services/event.service";
 import { useDialog } from "@/hooks/use-dialog.hook";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Card, Button } from "antd";
-import { DeleteFilled, PlusCircleOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteFilled,
+  PlusCircleOutlined,
+  EditOutlined,
+  EyeOutlined
+} from "@ant-design/icons";
 import { EventFormModal } from "@/components/domain/events/EventModal";
 import { FormModal } from "@/types/shared";
-
+import { useAuthStore } from "@/stores";
 
 const ManageEventPage: React.FC = () => {
+  const userRole = useAuthStore.getState().GET_AUTH_DATA().user.user_role.name;
   const { data, refetch } = useQuery({
     queryKey: ["data-events-list"],
     queryFn: async () => await EventService.geteventsList(),
@@ -27,7 +33,7 @@ const ManageEventPage: React.FC = () => {
       show: true,
       selectedData: eventData,
     });
-  }
+  };
   const handleDelete = (id: number) => {
     showConfirm({
       open: true,
@@ -61,14 +67,17 @@ const ManageEventPage: React.FC = () => {
         }
       />
       <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
-        <Button
-          type="primary"
-          className="bg-orange-500"
-          icon={<PlusCircleOutlined />}
-          onClick={() => handleFormModal({ show: true })}
-        >
-          Add Announcement
-        </Button>
+        {userRole === "superadmin" && (
+          <Button
+            type="primary"
+            className="bg-orange-500"
+            icon={<PlusCircleOutlined />}
+            onClick={() => handleFormModal({ show: true })}
+          >
+            Add Announcement
+          </Button>
+        )}
+
         <button
           className="h-[35px] max-md:!w-full px-3 rounded bg-gray-200 border border-gray-300 text-gray-800 text-sm"
           onClick={() => refetch()}
@@ -83,13 +92,29 @@ const ManageEventPage: React.FC = () => {
               <Card
                 key={event.id}
                 style={{ width: 300 }}
-                cover={<img alt="example" src={event.banner_img} className="h-40 object-cover" />}
-                actions={[
-                  <EditOutlined onClick={() => handleUpdate(event)}/>,
-                  <DeleteFilled onClick={() => handleDelete(event.id)} />,
-                ]}
+                cover={
+                  <img
+                    alt="example"
+                    src={event.banner_img}
+                    className="h-40 object-cover"
+                  />
+                }
+                {...(userRole === "superadmin" && {
+                  actions: [
+                    <EditOutlined onClick={() => handleUpdate(event)} />,
+                    <DeleteFilled onClick={() => handleDelete(event.id)} />,
+                  ],
+                })}
+                {
+                  ...(userRole === "teacher" || userRole === "student" ? {
+                    actions: [
+                    <EyeOutlined />
+                      
+                    ]
+                  } : null )
+                }
               >
-                <Card.Meta title={event.title} description={event.message}  />
+                <Card.Meta title={event.title} description={event.message} />
               </Card>
             ))}
         </div>

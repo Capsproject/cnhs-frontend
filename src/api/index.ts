@@ -8,8 +8,6 @@ const baseURLS = {
 
 
 const instance: AxiosInstance = axios.create({
-  // baseURL: "https://dclms-backend-nestjs-production.up.railway.app/api/v1",
-  // @ts-ignore
   baseURL: baseURLS[import.meta.env.VITE_APP_APIENV],
 });
 
@@ -22,7 +20,7 @@ instance.interceptors.request.use(
     const token = useAuthStore.getState().GET_AUTH_DATA().authToken;
     config.headers["Accept"] = "application/json";
     config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = `Bearer ${token}`; // For Security API 
     if (config.data && !(config.data instanceof FormData)) {
       config.headers["Content-Type"] = "application/json";
     }
@@ -42,7 +40,7 @@ instance.interceptors.response.use(
       const { status } = error.response;
       if (status === 401) {
         console.error('Unauthorized');
-        window.location.href = "/auth/signin";
+        // window.location.href = "/auth/signin";
       }
       if (status === 500) {
         console.error({

@@ -114,6 +114,10 @@ export default createBrowserRouter([
         element: ManageAnnouncementPage
       },
       {
+        path: "/dashboard/events",
+        element: ManageEventPage
+      },
+      {
         path: "/dashboard/messages",
         element: MessagesPage
       }
