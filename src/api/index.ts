@@ -1,16 +1,9 @@
 import { useAuthStore } from "@/stores/auth.store";
 import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
 
-const baseURLS = {
-  // prod: "https://dclms-backend-nestjs-production.up.railway.app/api/v1",
-  local: "https://mcbportal.cloud/api/v1",
-};
-
-
 const instance: AxiosInstance = axios.create({
   baseURL: baseURLS[import.meta.env.VITE_APP_APIENV],
 });
-
 
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
@@ -18,6 +11,7 @@ instance.interceptors.request.use(
      * Set Headers
      */
     const token = useAuthStore.getState().GET_AUTH_DATA().authToken;
+
     config.headers["Accept"] = "application/json";
     config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
     config.headers["Authorization"] = `Bearer ${token}`; // For Security API 
