@@ -1,8 +1,13 @@
 import { useAuthStore } from "@/stores/auth.store";
-import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_APIENV,
+  baseURL: import.meta.env.VITE_APP_APIURL,
 });
 
 instance.interceptors.request.use(
@@ -11,10 +16,11 @@ instance.interceptors.request.use(
      * Set Headers
      */
     const token = useAuthStore.getState().GET_AUTH_DATA().authToken;
-
     config.headers["Accept"] = "application/json";
-    config.headers["X-API-KEY"] = `${import.meta.env.VITE_APP_APIKEY}`.toUpperCase();
-    config.headers["Authorization"] = `Bearer ${token}`; // For Security API 
+    config.headers["X-API-KEY"] = `${
+      import.meta.env.VITE_APP_APIKEY
+    }`.toUpperCase();
+    config.headers["Authorization"] = `Bearer ${token}`;
     if (config.data && !(config.data instanceof FormData)) {
       config.headers["Content-Type"] = "application/json";
     }
@@ -33,8 +39,7 @@ instance.interceptors.response.use(
     if (error.response) {
       const { status } = error.response;
       if (status === 401) {
-        console.error('Unauthorized');
-        // window.location.href = "/auth/signin";
+        window.location.href = "/auth/signin";
       }
       if (status === 500) {
         console.error({
