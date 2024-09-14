@@ -25,13 +25,14 @@ const ManageEventPage: React.FC = () => {
   const [formModal, setFormModal] = React.useState<FormModal>({
     show: false,
     selectedData: undefined,
+    formType: undefined,
   });
   const { showConfirm, closeConfirm, DialogComponent } = useDialog();
   const handleUpdate = (eventData: any) => {
-    console.log(eventData);
     handleFormModal({
       show: true,
       selectedData: eventData,
+      formType: "update"
     });
   };
   const handleDelete = (id: number) => {
@@ -53,71 +54,78 @@ const ManageEventPage: React.FC = () => {
   const handleFormModal = (data: FormModal) => {
     setFormModal(data);
   };
+  const handleView = (eventData : any) => {
+    handleFormModal({
+      show: true,
+      selectedData: eventData,
+      formType: "view"
+    })
+  }
   return (
     <>
       {DialogComponent}
       <PageHeader title="Manage Event" />
       <EventFormModal
-        show={formModal.show}
-        formType={formModal.selectedData ? "update" : "add"}
-        data={formModal.selectedData}
-        refetch={refetch}
-        handleClose={() =>
-          setFormModal({ show: false, selectedData: undefined })
-        }
+      show={formModal.show}
+      formType={formModal.formType}
+      data={formModal.selectedData}
+      refetch={refetch}
+      handleClose={() =>
+        setFormModal({ show: false, selectedData: undefined })
+      }
       />
       <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
-        {userRole === "superadmin" && (
-          <Button
-            type="primary"
-            className="bg-orange-500"
-            icon={<PlusCircleOutlined />}
-            onClick={() => handleFormModal({ show: true })}
-          >
-            Add Announcement
-          </Button>
-        )}
-
-        <button
-          className="h-[35px] max-md:!w-full px-3 rounded bg-gray-200 border border-gray-300 text-gray-800 text-sm"
-          onClick={() => refetch()}
+      {userRole === "superadmin" && (
+        <Button
+        type="primary"
+        className="bg-orange-500"
+        icon={<PlusCircleOutlined />}
+        onClick={() => handleFormModal({ show: true, formType: "add" })}
         >
-          Refresh list
-        </button>
+        Add Announcement
+        </Button>
+      )}
+
+      <button
+        className="h-[35px] max-md:!w-full px-3 rounded bg-gray-200 border border-gray-300 text-gray-800 text-sm"
+        onClick={() => refetch()}
+      >
+        Refresh list
+      </button>
       </div>
       <div className="over-flow-auto h-[80vh] md:overflow-auto sm:overflow-auto">
-        <div className="flex flex-wrap xl:gap-9 md:gap-4 justify-center gap-3 over-flow-auto  md:overflow-auto sm:overflow-auto">
-          {data &&
-            data.map((event: any) => (
-              <Card
-                key={event.id}
-                style={{ width: 300 }}
-                cover={
-                  <img
-                    alt="example"
-                    src={event.banner_img}
-                    className="h-40 object-cover"
-                  />
-                }
-                {...(userRole === "superadmin" && {
-                  actions: [
-                    <EditOutlined onClick={() => handleUpdate(event)} />,
-                    <DeleteFilled onClick={() => handleDelete(event.id)} />,
-                  ],
-                })}
-                {
-                  ...(userRole === "teacher" || userRole === "student" ? {
-                    actions: [
-                    <EyeOutlined />
-                      
-                    ]
-                  } : null )
-                }
-              >
-                <Card.Meta title={event.title} description={event.message} />
-              </Card>
-            ))}
-        </div>
+      <div className="flex flex-wrap xl:gap-9 md:gap-4 justify-center gap-3 over-flow-auto  md:overflow-auto sm:overflow-auto">
+        {data &&
+        data.map((event: any) => (
+          <Card
+          key={event.id}
+          style={{ width: 300 }}
+          cover={
+            <img
+            alt="example"
+            src={event.banner_img}
+            className="h-40 object-cover"
+            />
+          }
+          {...(userRole === "superadmin" && {
+            actions: [
+            <EyeOutlined onClick={() => handleView(event)} />,
+            <EditOutlined onClick={() => handleUpdate(event)} />,
+            <DeleteFilled onClick={() => handleDelete(event.id)} />,
+            ],
+          })}
+          {
+            ...(userRole === "teacher" || userRole === "student" ? {
+            actions: [
+             <EyeOutlined onClick={() => handleView(event)}/>
+            ]
+            } : null)
+          }
+          >
+          <Card.Meta title={event.title} description={event.message} />
+          </Card>
+        ))}
+      </div>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-export type FormModal = { show: boolean; selectedData?: any };
+export type FormModal = { show: boolean; selectedData?: any , formType?: "add" | "update" | "view" | any };
 
 export enum UserRoles {
   SUPERADMIN = "superadmin",
