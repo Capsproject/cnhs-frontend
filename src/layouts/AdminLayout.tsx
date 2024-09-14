@@ -52,7 +52,6 @@ const navLinksAdmin = [
     title: "About",
     to: "/admin/about",
     show: true,
-
   },
   {
     icon: <FaCalendarAlt size={ICON_SIZE} />,
@@ -60,23 +59,24 @@ const navLinksAdmin = [
     to: "/dashboard/calendar",
     show: true,
   },
-  
-]
+];
 
 export const AdminLayout: React.FC = () => {
   const { IS_AUTHENTICATED } = useAuthStore();
 
   React.useLayoutEffect(() => {
-    if(!IS_AUTHENTICATED()){
+    if (!IS_AUTHENTICATED()) {
       window.location.href = "/auth/signin";
     }
   }, [IS_AUTHENTICATED]);
   return (
-    <div className="flex-1 flex flex-row">
-      <Sidenav items={navLinksAdmin}/>
-      <div className="h-screen  bg-slate-200 px-10 py-5 w-screen ">
-        <Outlet />
+    <>
+      <div className="flex-1 flex flex-row">
+        <Sidenav items={navLinksAdmin} />
+        <div className="h-screen  bg-slate-200 px-10 py-5 w-screen ">
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

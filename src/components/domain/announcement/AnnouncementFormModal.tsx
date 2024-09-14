@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { AnnouncementService } from "@/services/announcement.service";
 type Props = {
   show: boolean;
-  formType: "add" | "update";
+  formType: "add" | "update" | "view";
   data?: any;
   refetch: () => void;
   handleClose: () => void;
@@ -69,7 +69,7 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
       }
       setSelectedImage(props.data.banner_img);
     }
-  }, [props.data, setValue]);
+  }, [props.formType, props.data, setValue]);
   return (
     <Modal
       loading={loading}
@@ -78,44 +78,54 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
       title={
         props.formType === "add" ? "Create Announcement" : "Update Announcement"
       }
-      onOk={handleFormSubmit}
       onCancel={props.handleClose}
-      okText="Submit"
+      {...(props.formType !== "view"
+        ? {
+            okText: "Submit",
+            onOk: handleFormSubmit,
+          }
+        : { footer: null })}
     >
       <form className="flex flex-col gap-2" onSubmit={handleFormSubmit}>
         <div className="flex flex-col gap-2">
           <p className="text-sm">
-            <span className="text-red-600 mr-1">*</span> Title
+            
+            {props.formType === "add" && (
+              <span className="text-red-600 mr-1">*</span>
+            )}Title
           </p>
 
           <input
             className={
-              errors.email
+              errors.title
                 ? "border border-red-400"
                 : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             }
             {...register("title", { required: true })}
             type="text"
+            {...(props.formType === "view" ? { disabled: true } : {})}
             required
           />
         </div>
 
         <div className="flex flex-col gap-2">
           <p className="text-sm">
-            <span className="text-red-600 mr-1">*</span> Description
+          {props.formType === "add" && (
+              <span className="text-red-600 mr-1">*</span>
+            )} Description
           </p>
           <input
             type="text"
+            {...(props.formType === "view" ? { disabled: true } : {})}
             {...register("message")}
             required
             className={
-              errors.email
+              errors.message
                 ? "border border-red-400"
                 : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             }
           />
         </div>
-        <h1>Upload File</h1>
         <h1>Upload File</h1>
         <div className="flex items-center justify-center w-full">
           <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
@@ -159,12 +169,13 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
               className="hidden"
               id="imageSelect"
               onChange={handleImageChange}
+              {...(props.formType === "view" ? { disabled: true } : {})}
             />
           </label>
           {errors.image ? (
             <small className="text-xs text-red-400">Image is required</small>
           ) : null}
-        </div> 
+        </div>
       </form>
     </Modal>
   );

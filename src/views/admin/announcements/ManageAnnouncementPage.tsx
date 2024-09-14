@@ -26,12 +26,19 @@ const ManageAnnouncementPage: React.FC = () => {
     setFormModal(data);
   };
   const handleUpdate = (announcementData: Announcement) => {
-    console.log(announcementData);
     handleFormModal({
       show: true,
       selectedData: announcementData,
+      formType: "update",
     });
   };
+  const handleView = (announcementData: Announcement) => {
+    handleFormModal({
+      show: true,
+      selectedData: announcementData,
+      formType: "view",
+    });
+  }
   const { showConfirm, closeConfirm, DialogComponent } = useDialog();
   const handleDelete = (id: number) => {
     showConfirm({
@@ -56,7 +63,7 @@ const ManageAnnouncementPage: React.FC = () => {
       <PageHeader title="Manage Announcement" />
       <AnnouncementFormModal
         show={formModal.show}
-        formType={formModal.selectedData ? "update" : "add"}
+        formType={formModal.formType}
         data={formModal.selectedData}
         refetch={refetch}
         handleClose={() =>
@@ -100,6 +107,7 @@ const ManageAnnouncementPage: React.FC = () => {
                 }
                 {...(userRole === "superadmin" && {
                   actions: [
+                    <EyeOutlined onClick={() => handleView(announcement)} />,
                     <EditOutlined onClick={() => handleUpdate(announcement)} />,
                     <DeleteFilled
                       onClick={() => handleDelete(announcement.id)}
@@ -108,7 +116,7 @@ const ManageAnnouncementPage: React.FC = () => {
                 })}
                 {...(userRole === "teacher" || userRole === "student" ? {
                   actions: [
-                    <EyeOutlined />
+                    <EyeOutlined onClick={() => handleView(announcement)}/>
                   ],
                 } : null)}
               >

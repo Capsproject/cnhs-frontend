@@ -29,7 +29,7 @@ export const SidenavItems: React.FC<Props> = (props) => {
             }`}
           >
             {link.icon}
-            <span className="hidden md:block ml-2">
+            <span className="hidden sm:block ml-2">
               {link.title}
             </span>
           </Link>

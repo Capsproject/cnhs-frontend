@@ -132,6 +132,14 @@ export default createBrowserRouter([
       {
         path: "/dashboard/calendar",
         element: CalendarPage
+      },
+      {
+        path: "/dashboard/feedbacks",
+        element: FeedbacksPage
+      },
+      {
+        path: "/dashboard/about",
+        element: AboutPage
       }
     ],
   },
