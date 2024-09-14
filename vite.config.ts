@@ -18,5 +18,6 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss, autoprefixer],
     },
-  }
+  },
+  base: "/cnhs-frontend/",
 });
