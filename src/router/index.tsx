@@ -71,8 +71,12 @@ const MessagesPage = LoadComponent(
   React.lazy(() => import("@/views/messages/Messages"))
 )
 
-
-
+/**
+ * Calendar Page
+ */
+const CalendarPage = LoadComponent(
+  React.lazy(() => import("@/views/calendar/CalendarPage"))
+)
 
 export default createBrowserRouter([
   {
@@ -120,6 +124,14 @@ export default createBrowserRouter([
       {
         path: "/dashboard/messages",
         element: MessagesPage
+      },
+      {
+        path: "/dashboard/account-setting",
+        element: AccountSetting
+      },
+      {
+        path: "/dashboard/calendar",
+        element: CalendarPage
       }
     ],
   },

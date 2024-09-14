@@ -68,7 +68,7 @@ export const DashboardLayout: React.FC = () => {
   return (
     <div className="flex-1 flex flex-row">
       <Sidenav items={navLinks}/>
-      <div className="h-screen  bg-slate-200 px-10 py-5 w-screen ">
+      <div className="h-screen  bg-slate-200 px-10 py-5 w-screen overflow-y-auto">
         <Outlet />
       </div>
     </div>

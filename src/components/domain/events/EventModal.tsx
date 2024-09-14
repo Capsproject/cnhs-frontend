@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 type Props = {
   show: boolean;
-  formType: "add" | "update";
+  formType: "add" | "update" | "view";
   data?: any;
   refetch: () => void;
   handleClose: () => void;
@@ -25,7 +25,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
     reset();
     setSelectedImage(null);
     props.handleClose();
-  }
+  };
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const [selectedBanner, setSelectBanner] = React.useState<any | null>(null);
   const handleFormSubmit = handleSubmit(async (data: any) => {
@@ -34,7 +34,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("message", data.message);
-    formData.append("image",  selectedBanner);
+    formData.append("image", selectedBanner);
     formData.append("event_date", data.event_date);
     formData.append("event_time", data.event_time);
     if (props.formType === "add") {
@@ -68,22 +68,33 @@ export const EventFormModal: React.FC<Props> = (props) => {
     }
   };
   React.useEffect(() => {
+    console.log(props.formType);
     if (props.data) {
-      for (const [key, value] of Object.entries(props.data)){
+      for (const [key, value] of Object.entries(props.data)) {
         setValue(key, value);
       }
       setSelectedImage(props.data.banner_img);
     }
-  }, [props.data, setValue])
+  }, [props.formType, props.data, setValue]);
   return (
     <Modal
       loading={loading}
-      title={props.formType === "add" ? "Create Event" : "Update Event"}
+      title={
+        props.formType === "add"
+          ? "Create Event"
+          : props.formType === "view"
+          ? "Event Detail"
+          : "Update Event"
+      }
       onCancel={closeModal}
-      okText="Submit"
       onClose={closeModal}
       open={props.show}
-      onOk={handleFormSubmit}
+      {...(props.formType !== "view"
+        ? {
+            okText: "Submit",
+            onOk: handleFormSubmit,
+          }
+        : { footer: null })}
     >
       <form className="flex flex-col gap-2" onSubmit={handleFormSubmit}>
         <div className="flex flex-col gap-2">
@@ -95,9 +106,9 @@ export const EventFormModal: React.FC<Props> = (props) => {
             }
             placeholder="Event Title"
             {...register("title", { required: true })}
-
             type="text"
             required
+            {...(props.formType === "view" ? { disabled: true } : {})}
           />
           {errors.title ? (
             <small className="text-xs text-red-400">Title is required</small>
@@ -105,6 +116,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
         </div>
         <div className="flex flex-col gap-2">
           <input
+            {...(props.formType === "view" ? { disabled: true } : {})}
             className={
               errors.message
                 ? "border border-red-400"
@@ -116,41 +128,46 @@ export const EventFormModal: React.FC<Props> = (props) => {
             required
           />
           {errors.title ? (
-            <small className="text-xs text-red-400">Description is required</small>
+            <small className="text-xs text-red-400">
+              Description is required
+            </small>
           ) : null}
         </div>
         <div className="flex items-center w-full gap-5 justify-between flex-wrap">
-        <div className="flex flex-row gap-2">
-          <input
-            className={
-              errors.message
-                ? "border border-red-400"
-                : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            }
-            placeholder="Event Date"
-            {...register("event_date", { required: true })}
-            type="date"
-            required
-          />
-          {errors.title ? (
-            <small className="text-xs text-red-400">Date is required</small>
-          ) : null}
-          <input
-            className={
-              errors.message
-                ? "border border-red-400"
-                : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            }
-            placeholder="Event Time"
-            {...register("event_time", { required: true })}
-            type="time"
-            value={props.data?.event_time}
-            required
-          />
-          {errors.title ? (
-            <small className="text-xs text-red-400">Date is required</small>
-          ) : null}
-        </div>
+          <div className="flex flex-row gap-2">
+            <input
+              {...(props.formType === "view" ? { disabled: true } : {})}
+              className={
+                errors.message
+                  ? "border border-red-400"
+                  : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              }
+              placeholder="Event Date"
+              {...register("event_date", { required: true })}
+              type="date"
+              required
+              value={props.data?.event_date}
+            />
+            {errors.event_date ? (
+              <small className="text-xs text-red-400">Date is required</small>
+            ) : null}
+            <input
+              {...(props.formType === "view" ? { disabled: true } : {})}
+              className={
+                errors.message
+                  ? "border border-red-400"
+                  : "appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              }
+              placeholder="Event Time"
+              {...register("event_time", { required: true })}
+              type="time"
+              value={props.data?.event_time}
+              required
+            />
+            {errors.event_time ? (
+              <small className="text-xs text-red-400">Time is required</small>
+            ) : null}
+          </div>
         </div>
         <h1>Upload File</h1>
         <div className="flex items-center justify-center w-full">
@@ -194,7 +211,8 @@ export const EventFormModal: React.FC<Props> = (props) => {
               type="file"
               className="hidden"
               id="imageSelect"
-              onChange={handleImageChange} 
+              onChange={handleImageChange}
+              {...(props.formType === "view" ? { disabled: true } : {})}
             />
           </label>
           {errors.image ? (
