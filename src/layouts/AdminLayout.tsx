@@ -7,7 +7,6 @@ import { TfiAnnouncement } from "react-icons/tfi";
 import { GrDocumentConfig } from "react-icons/gr";
 import { VscFeedback } from "react-icons/vsc";
 import { BiMessageSquareDots } from "react-icons/bi";
-import { FcAbout } from "react-icons/fc";
 import { FaCalendarAlt } from "react-icons/fa";
 const ICON_SIZE = 20;
 const navLinksAdmin = [
@@ -20,7 +19,7 @@ const navLinksAdmin = [
   {
     icon: <GrDocumentConfig size={ICON_SIZE} />,
     title: "Enrollment Status",
-    to: "/dashboard/quizzes",
+    to: "/admin/manage-enrollment",
     show: true,
   },
   {
@@ -45,12 +44,6 @@ const navLinksAdmin = [
     icon: <BiMessageSquareDots size={ICON_SIZE} />,
     title: "Messages",
     to: "/admin/messages",
-    show: true,
-  },
-  {
-    icon: <FcAbout size={ICON_SIZE} />,
-    title: "About",
-    to: "/admin/about",
     show: true,
   },
   {

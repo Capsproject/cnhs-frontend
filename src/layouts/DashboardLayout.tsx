@@ -47,7 +47,6 @@ const navLinks = [
     title: "About",
     to: "/dashboard/about",
     show: true,
-
   },
   {
     icon: <FaCalendarAlt size={ICON_SIZE} />,
@@ -55,19 +54,22 @@ const navLinks = [
     to: "/dashboard/calendar",
     show: true,
   },
-  
-]
+];
 export const DashboardLayout: React.FC = () => {
-  const { IS_AUTHENTICATED } = useAuthStore();
+  const { IS_AUTHENTICATED, user } = useAuthStore();
 
   React.useLayoutEffect(() => {
-    if(!IS_AUTHENTICATED()){
+    if (!IS_AUTHENTICATED()) {
       window.location.href = "/auth/signin";
     }
-  }, [IS_AUTHENTICATED]);
+    console.log(user);
+    if (user?.user_role.name === "superadmin") {
+      window.location.href = "/admin/manage-account";
+    }
+  }, [user, IS_AUTHENTICATED]);
   return (
     <div className="flex-1 flex flex-row">
-      <Sidenav items={navLinks}/>
+      <Sidenav items={navLinks} />
       <div className="h-screen  bg-slate-200 px-10 py-5 w-screen overflow-y-auto">
         <Outlet />
       </div>

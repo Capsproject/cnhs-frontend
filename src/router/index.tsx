@@ -55,7 +55,9 @@ const AccountSetting = LoadComponent(
 const FeedbacksPage = LoadComponent(
   React.lazy(() => import("@/views/admin/feedbacks/FeedbacksPage"))
 )
-
+const ManageEnrollmentPage = LoadComponent(
+  React.lazy(() => import("@/views/admin/enrollment/ManageEnrollment"))
+)
 
 /**
  * About
@@ -160,10 +162,6 @@ export default createBrowserRouter([
         element: ManageAnnouncementPage
       },
       {
-        path: "/admin/about",
-        element: AboutPage
-      },
-      {
         path: "/admin/messages",
         element: MessagesPage
       },
@@ -174,6 +172,10 @@ export default createBrowserRouter([
       {
         path: "/admin/account-setting",
         element: AccountSetting
+      },
+      {
+        path: "/admin/manage-enrollment",
+        element: ManageEnrollmentPage,
       }
     ]
   }
