@@ -62,7 +62,6 @@ export const DashboardLayout: React.FC = () => {
     if (!IS_AUTHENTICATED()) {
       window.location.href = "/auth/signin";
     }
-    console.log(user);
     if (user?.user_role.name === "superadmin") {
       window.location.href = "/admin/manage-account";
     }
