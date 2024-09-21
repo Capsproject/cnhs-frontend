@@ -124,7 +124,7 @@ const UsersManagementPage: React.FC = () => {
           </button>
         </div>
       <div className="min:h-[400px] bg-white border-t-2 border-gray-100">
-        <Table columns={tableColumns}  dataSource={data} loading={isFetching}  />
+        <Table columns={tableColumns}  dataSource={data} loading={isFetching} pagination={false} />
       </div>
       <UserAccountFormModal
         show={formModal.show}
