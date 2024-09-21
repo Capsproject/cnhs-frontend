@@ -1,1 +1,0 @@
-import{j as e}from"./index-9I8Vq2C0.js";import{P as r}from"./PageHeader-DA3r9hgs.js";import"./auth.service-BBShxZoF.js";import"./button-CsR1mtr1.js";const m=()=>e.jsxs(e.Fragment,{children:[e.jsx(r,{title:"Manage Enrollment"}),e.jsx("div",{children:"ManageEnrollment"}),";"]});export{m as ManageEnrollment,m as default};
