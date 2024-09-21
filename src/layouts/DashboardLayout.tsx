@@ -9,7 +9,7 @@ import { BiMessageSquareDots } from "react-icons/bi";
 import { FcAbout } from "react-icons/fc";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Sidenav } from "@/components/layouts/Sidenav";
-import { IS_NOTEACHER } from "@/components/constants";
+import { IS_NOTEACHER, IS_SUPERADMIN } from "@/components/constants";
 const ICON_SIZE = 20;
 const navLinks = [
   {
@@ -27,7 +27,13 @@ const navLinks = [
   {
     icon: <GrDocumentConfig size={ICON_SIZE} />,
     title: "Enrollment Status",
-    to: "/dashboard/quizzes",
+    to: "/dashboard/enrollment",
+    show: IS_SUPERADMIN,
+  },
+  {
+    icon: <GrDocumentConfig size={ICON_SIZE} />,
+    title: "Grades",
+    to: "/dashboard/grades",
     show: true,
   },
   {

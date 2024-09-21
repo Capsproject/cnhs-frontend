@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PageHeader } from "@/components/shared/PageHeader";
 import { FeedbackService } from "@/services/feedback.service";
 import { useQuery } from "@tanstack/react-query";

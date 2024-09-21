@@ -59,7 +59,7 @@ export const AuthService = {
           }, 5000);
         } else {
           setTimeout(() => {
-            window.location.href = "/dashboard/overview";
+            window.location.href = "/dashboard/announcements";
           }, 5000);
         }
       })

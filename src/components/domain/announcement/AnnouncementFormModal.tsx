@@ -4,13 +4,8 @@ import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { AnnouncementService } from "@/services/announcement.service";
-type Props = {
-  show: boolean;
-  formType: "add" | "update" | "view";
-  data?: any;
-  refetch: () => void;
-  handleClose: () => void;
-};
+import { Props } from "@/types/Props";
+
 
 export const AnnouncementFormModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = React.useState<boolean>(false);

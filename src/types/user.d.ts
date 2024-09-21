@@ -10,16 +10,7 @@ export type User = {
   updatedAt: Date;
   deletedAt: null;
   profile: string;
-  user_role: {
-    id: number;
-    name: string;
-    description: string;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: null;
-  
-  };
-  
+  user_role: Role
 };
 
 export type UserForm = {
@@ -27,4 +18,13 @@ export type UserForm = {
   email: string;
   password: string;
   userRoleId: number;
-}
+};
+
+export type Role = {
+  id: number;
+  name: string;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: null;
+};
