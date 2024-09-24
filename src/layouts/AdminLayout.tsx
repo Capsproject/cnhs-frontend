@@ -8,6 +8,8 @@ import { GrDocumentConfig } from "react-icons/gr";
 import { VscFeedback } from "react-icons/vsc";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { FaCalendarAlt } from "react-icons/fa";
+import { ScheduleOutlined } from "@ant-design/icons";
+
 const ICON_SIZE = 20;
 const navLinksAdmin = [
   {
@@ -41,6 +43,12 @@ const navLinksAdmin = [
     show: true,
   },
   {
+    icon: <ScheduleOutlined size={ICON_SIZE}/>,
+    title: "Sections",
+    to: "/admin/sections",
+    show: true,
+  },
+  {
     icon: <BiMessageSquareDots size={ICON_SIZE} />,
     title: "Messages",
     to: "/admin/messages",
@@ -49,7 +57,7 @@ const navLinksAdmin = [
   {
     icon: <FaCalendarAlt size={ICON_SIZE} />,
     title: "Calendar",
-    to: "/dashboard/calendar",
+    to: "/admin/calendar",
     show: true,
   },
 ];

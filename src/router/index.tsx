@@ -57,6 +57,9 @@ const FeedbacksPage = LoadComponent(
 const ManageEnrollmentPage = LoadComponent(
   React.lazy(() => import("@/views/admin/enrollment/ManageEnrollment"))
 )
+const ManageSectionPage = LoadComponent(
+  React.lazy(() => import("@/views/admin/sections/ManageSectionPage"))
+)
 
 /**
  * About
@@ -175,6 +178,14 @@ export default createBrowserRouter([
       {
         path: "/admin/manage-enrollment",
         element: ManageEnrollmentPage,
+      },
+      {
+        path: "/admin/sections",
+        element: ManageSectionPage
+      },
+      {
+        path: "/admin/calendar",
+        element: CalendarPage
       }
     ]
   }
