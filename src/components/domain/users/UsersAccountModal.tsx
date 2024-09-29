@@ -443,7 +443,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 </div>
               )}
 
-              {/* {userRoleId === 3 && (
+              {userRoleId === 3 && (
                 <div className="w-full mb-2">
                   <h1 className="text-lg font-semibold text-orange-900">
                     Spouse Information
@@ -531,7 +531,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     />
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </div>
