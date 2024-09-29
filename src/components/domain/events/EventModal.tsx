@@ -206,14 +206,7 @@ export const EventFormModal: React.FC<Props> = (props) => {
                 </div>
               </>
             )}
-            <input
-              {...register("image")}
-              type="file"
-              className="hidden"
-              id="imageSelect"
-              onChange={handleImageChange}
-              {...(props.formType === "view" ? { disabled: true } : {})}
-            />
+            c
           </label>
           {errors.image ? (
             <small className="text-xs text-red-400">Image is required</small>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import Table, {ColumnsType} from "antd/es/table";
+import Table, { ColumnsType } from "antd/es/table";
 import { UserService } from "@/services/user.service";
 import { useDialog } from "@/hooks/use-dialog.hook";
 import type { FormModal } from "@/types/shared";
@@ -53,7 +53,7 @@ const UsersManagementPage: React.FC = () => {
 
   const tableColumns: ColumnsType<User> = [
     {
-      title: "Account Type", 
+      title: "Account Type",
       key: "user_role",
       render: (row: any) => {
         if (+row.user_role.id === 1) {
@@ -101,7 +101,7 @@ const UsersManagementPage: React.FC = () => {
       },
     },
   ];
-  
+
   React.useEffect(() => {
     if (data) {
       if (data.filter((user: any) => +user.user_role === 2).length > 0) {
@@ -115,28 +115,40 @@ const UsersManagementPage: React.FC = () => {
     <div>
       {DialogComponent}
       <PageHeader title="Manage Account" />
-        <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
-          <button className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm" onClick={() => handleFormModal({ show: true })}>
-            Add User
-          </button>
-          <button className="h-[35px] max-md:!w-full px-3 rounded bg-gray-200 border border-gray-300 text-gray-800 text-sm" onClick={() => refetch()}>
-            Refresh list
-          </button>
-        </div>
-        
+      <div className="flex flex-row max-md:flex-col justify-end gap-3 w-full mb-4">
+        <button
+          className="h-[35px] max-md:!w-full px-3 rounded bg-primary text-white text-sm"
+          onClick={() => handleFormModal({ show: true, formType: "add" })}
+        >
+          Add User
+        </button>
+        <button
+          className="h-[35px] max-md:!w-full px-3 rounded bg-gray-200 border border-gray-300 text-gray-800 text-sm"
+          onClick={() => refetch()}
+        >
+          Refresh list
+        </button>
+      </div>
+
       <div className="min:h-[400px] bg-white border-t-2 border-gray-100">
-        <Table columns={tableColumns}  dataSource={data} loading={isFetching} pagination={false} />
+        <Table
+          columns={tableColumns}
+          dataSource={data}
+          loading={isFetching}
+          pagination={false}
+        />
       </div>
       <UserAccountFormModal
         show={formModal.show}
-        formType={formModal.selectedData ? "update" : "add"}
+        formType={formModal.formType}
         data={formModal.selectedData}
         disableDC={disableDc}
         refetch={refetch}
-        handleClose={() => handleFormModal({ show: false, selectedData: undefined })}
+        handleClose={() =>
+          handleFormModal({ show: false, selectedData: undefined })
+        }
       />
     </div>
-    
   );
 };
 
