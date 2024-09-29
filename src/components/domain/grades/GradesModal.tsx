@@ -21,3 +21,5 @@ export const GradesModal: React.FC<Props> = (props) => {
     </Modal>
   )
 }
+
+export default GradesModal;
