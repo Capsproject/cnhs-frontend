@@ -9,7 +9,7 @@ import { BiMessageSquareDots } from "react-icons/bi";
 import { FcAbout } from "react-icons/fc";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Sidenav } from "@/components/layouts/Sidenav";
-import { IS_NOTEACHER, IS_SUPERADMIN } from "@/components/constants";
+import { IS_NOTTEACHER, IS_STUDENT, IS_SUPERADMIN } from "@/components/constants";
 const ICON_SIZE = 20;
 const navLinks = [
   {
@@ -40,7 +40,7 @@ const navLinks = [
     icon: <VscFeedback size={ICON_SIZE} />,
     title: "Feedback",
     to: "/dashboard/feedbacks",
-    show: IS_NOTEACHER,
+    show: IS_NOTTEACHER,
   },
   {
     icon: <BiMessageSquareDots size={ICON_SIZE} />,
@@ -52,6 +52,12 @@ const navLinks = [
     icon: <FcAbout size={ICON_SIZE} />,
     title: "About",
     to: "/dashboard/about",
+    show: true,
+  },
+  {
+    icon: <FcAbout size={ICON_SIZE} />,
+    title: "Section",
+    to: "/dashboard/section",
     show: true,
   },
   {

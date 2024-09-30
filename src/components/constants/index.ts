@@ -10,10 +10,7 @@ export const USER_ROLES = {
 export const IS_SUPERADMIN = roleUtils.checkRole(USER_ROLES.SUPERADMIN);
 export const IS_TEACHER = roleUtils.checkRole(USER_ROLES.TEACHER);
 export const IS_STUDENT = roleUtils.checkRole(USER_ROLES.STUDENT);
-export const IS_NOTEACHER = roleUtils.checkRole([
-  USER_ROLES.STUDENT,
-  USER_ROLES.SUPERADMIN,
-]);
+export const IS_NOTTEACHER = roleUtils.checkRole(USER_ROLES.SUPERADMIN) || roleUtils.checkRole(USER_ROLES.STUDENT);
 
 export const gradeLevel: KeyValuePair[] = [
   { 
