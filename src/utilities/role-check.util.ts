@@ -7,7 +7,7 @@ export const roleUtils = {
     if (!user) return false;
 
     if (checkMultipleRole) {
-      //
+      // 
     }
 
     return user?.user_role.name === role;

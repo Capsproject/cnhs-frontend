@@ -157,7 +157,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 <input
                   type="text"
                   id="first_name"
-                  className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                   placeholder="Your name"
                   required
                   {...register("name", { required: true })}
@@ -169,14 +169,14 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <input
                     type="date"
                     id="first_name"
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 "
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm "
                     {...register("birthdate", { required: true })}
                     required
                   />
                 </div>
                 <div className="w-1/2">
                   <select
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     {...register("gender", { required: true })}
                   >
                     <option selected>Select your Gender</option>
@@ -195,7 +195,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   }
                 />
                 <select
-                  className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block p-2.5"
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                   {...register("user_role_id", {
                     required: true,
                     onChange: (e) => setUserRoleId(+e.target.value),
@@ -221,7 +221,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
               <div className="flex mb-2">
                 <input
                   type="text"
-                  className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                   placeholder="Your address"
                   required
                   {...register("address", { required: true })}
@@ -234,7 +234,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 <div className="w-1/2">
                   <input
                     type="email"
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="Your email"
                     required
                     {...register("email", { required: true })}
@@ -243,7 +243,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 </div>
                 <div className="w-1/2">
                   <input
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="******************"
                     type="text"
                     defaultValue={password}
@@ -273,7 +273,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 <div className="w-1/2">
                   <input
                     type="text"
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="Your contact number"
                     required
                     {...register("contact_number", {
@@ -297,7 +297,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 </div>
                 <div className="w-1/2">
                   <input
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="Your Religion"
                     type="text"
                     {...register("religion")}
@@ -311,7 +311,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 <div className="w-1/2">
                   <input
                     type="text"
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="Your Status"
                     required
                     {...register("status", { required: true })}
@@ -320,7 +320,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                 </div>
                 <div className="w-1/2">
                   <input
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                     placeholder="Your Nationality "
                     type="text"
                     {...register("nationality")}
@@ -330,12 +330,12 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
               </div>
 
               {/* Emergency Contact */}
-              <div className="w-full flex gap-2 mb-2">
-                <div className="w-1/2">
+              <div className="w-full flex">
+                <div className="w-full">
                   <input
                     type="text"
-                    className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
-                    placeholder="Your contact number"
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                    placeholder="Your Emergency contact number"
                     required
                     {...register("emergency_contact", {
                       required: true,
@@ -355,14 +355,14 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
               {/* Second Info */}
               {userRoleId === 4 && (
                 <div className="w-full mb-2">
-                  <h1 className="text-lg font-semibold text-orange-900">
+                  <h1 className="text-lg font-semibold ">
                     Parent Information
                   </h1>
                   <div className="w-full flex gap-2 mb-2">
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Father's Name"
                         required
                         {...register("father_name", { required: true })}
@@ -374,7 +374,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Mother's Name"
                         required
                         {...register("mother_name", { required: true })}
@@ -388,7 +388,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Father'cupation"
                         required
                         {...register("father_occu", { required: true })}
@@ -400,7 +400,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Mother's Occupation"
                         required
                         {...register("mother_occu", { required: true })}
@@ -413,7 +413,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="full mb-2">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="09123456789"
                       required
                       {...register("parent_contactNumber", { required: true })}
@@ -423,7 +423,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="full mb-2">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="Address"
                       required
                       {...register("parent_address", { required: true })}
@@ -433,7 +433,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="Permanent Address"
                       required
                       {...register("permanent_address", { required: true })}
@@ -445,14 +445,14 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
 
               {userRoleId === 3 && (
                 <div className="w-full mb-2">
-                  <h1 className="text-lg font-semibold text-orange-900">
+                  <h1 className="text-lg font-semibold">
                     Spouse Information
                   </h1>
                   <div className="w-full flex gap-2 mb-2">
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Father's Name"
                         required
                         {...register("father_name", { required: true })}
@@ -464,7 +464,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Mother's Name"
                         required
                         {...register("mother_name", { required: true })}
@@ -478,7 +478,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Father'cupation"
                         required
                         {...register("father_occu", { required: true })}
@@ -490,7 +490,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                     <div className="w-1/2">
                       <input
                         type="text"
-                        className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                         placeholder="Mother's Occupation"
                         required
                         {...register("mother_occu", { required: true })}
@@ -503,7 +503,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="full mb-2">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="09123456789"
                       required
                       {...register("spouse_contactNumber", { required: true })}
@@ -513,7 +513,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="full mb-2">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="Address"
                       required
                       {...register("spouse_address", { required: true })}
@@ -523,7 +523,7 @@ export const UserAccountFormModal: React.FC<Props> = (props) => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="bg-orange-50 border border-orange-300 text-orange-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 placeholder:text-orange-300"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                       placeholder="Permanent Address"
                       required
                       {...register("spouse_permanent_address", { required: true })}

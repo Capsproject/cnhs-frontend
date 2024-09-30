@@ -144,6 +144,10 @@ export default createBrowserRouter([
       {
         path: "/dashboard/grades",
         element: ManageGrades
+      },
+      {
+        path: "/dashboard/section",
+        element: ManageSectionPage
       }
     ],
   },
