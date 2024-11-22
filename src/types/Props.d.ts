@@ -4,6 +4,7 @@ export type Props = {
   formType: "add" | "update" | "view";
   data?: any;
   disableDC: boolean;
+  loading?: boolean;
   refetch: () => void;
   handleClose: () => void;
 };

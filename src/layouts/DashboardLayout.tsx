@@ -9,7 +9,15 @@ import { BiMessageSquareDots } from "react-icons/bi";
 import { FcAbout } from "react-icons/fc";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Sidenav } from "@/components/layouts/Sidenav";
-import { IS_NOTTEACHER, IS_STUDENT, IS_SUPERADMIN } from "@/components/constants";
+import {
+  IS_NOTADMIN,
+  IS_NOTTEACHER,
+  IS_SUPERADMIN,
+  IS_TEACHER,
+} from "@/components/constants";
+import { icons } from "antd/es/image/PreviewGroup";
+import { BookFilled, ShopTwoTone } from "@ant-design/icons";
+import { title } from "process";
 const ICON_SIZE = 20;
 const navLinks = [
   {
@@ -37,6 +45,18 @@ const navLinks = [
     show: true,
   },
   {
+    icon: <GrDocumentConfig size={ICON_SIZE} />,
+    title: "Subject",
+    to: "/dashboard/subject",
+    show: IS_TEACHER,
+  },
+  {
+    icon: <BookFilled />,
+    title: "Modules",
+    to: "/dashboard/modules",
+    show: IS_NOTADMIN
+  },
+  {
     icon: <VscFeedback size={ICON_SIZE} />,
     title: "Feedback",
     to: "/dashboard/feedbacks",
@@ -58,7 +78,7 @@ const navLinks = [
     icon: <FcAbout size={ICON_SIZE} />,
     title: "Section",
     to: "/dashboard/section",
-    show: true,
+    show: IS_SUPERADMIN,
   },
   {
     icon: <FaCalendarAlt size={ICON_SIZE} />,

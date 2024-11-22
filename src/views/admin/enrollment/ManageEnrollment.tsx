@@ -1,6 +1,10 @@
 import { PageHeader } from "@/components/shared/PageHeader";
-import { Button, Table } from "antd";
+import { Button, Dropdown, Input, Table } from "antd";
 import React from "react";
+import Search from "antd/es/input/Search";
+import { KeyValuePair } from "@/types/value-pair";
+import { gradeLevel } from "@/components/constants";
+import { ItemType } from "antd/es/menu/interface";
 
 export const ManageEnrollment: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -75,10 +79,39 @@ export const ManageEnrollment: React.FC = () => {
       },
     },
   ];
-
+  const items = [
+    {
+      label: "View",
+      key: 1,
+    },
+    {
+      label: "Delete",
+      key: 2,
+    },
+  ];
+  const gradeLevels: ItemType[] = gradeLevel.map((item) => {
+    return {
+      label: item.label,
+      key: item.value,
+    }
+  })
   return (
     <>
       <PageHeader title="Manage Enrollment" />
+      <div className="flex gap-2 justify-center mb-2">
+        <Dropdown menu={{ items: gradeLevels }} placement="bottom" arrow>
+          <Button>Grade</Button>
+        </Dropdown>
+        <Dropdown menu={{ items }} placement="bottom" arrow>
+          <Button>Section</Button>
+        </Dropdown>
+        <Search
+          placeholder="input search text"
+          enterButton="Search"
+          size="large"
+          loading={loading}
+        />
+      </div>
       <Table loading={loading} dataSource={[]} columns={tableColumns} />
     </>
   );

@@ -60,11 +60,13 @@ const ManageAnnouncementPage: React.FC = () => {
   return (
     <>
       {DialogComponent}
-      <PageHeader title="Manage Announcement" />
+      <PageHeader title={userRole === "admin" ? "Manage Announcement" : "Announcement"} />
+      
       <AnnouncementFormModal
         show={formModal.show}
         formType={formModal.formType}
         data={formModal.selectedData}
+        disableDC={false}
         refetch={refetch}
         handleClose={() =>
           handleFormModal({ show: false, selectedData: undefined })
@@ -77,7 +79,7 @@ const ManageAnnouncementPage: React.FC = () => {
               type="primary"
               className="bg-orange-500"
               icon={<PlusCircleOutlined />}
-              onClick={() => handleFormModal({ show: true })}
+              onClick={() => handleFormModal({ show: true, formType: "add" })}
             >
               Add Announcement
             </Button>

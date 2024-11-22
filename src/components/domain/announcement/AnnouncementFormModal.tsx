@@ -19,7 +19,6 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
 
   const handleFormSubmit = handleSubmit(async (data: any) => {
     setLoading(true);
-    console.log(data.image[0]);
     if (props.formType === "add") {
       const formData = new FormData();
       formData.append("title", data.title);
@@ -52,6 +51,7 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
       };
       reader.readAsDataURL(file);
       setSelectBanner(file);
+      console.log(selectedBanner);
     } else {
       setSelectedImage(null);
     }

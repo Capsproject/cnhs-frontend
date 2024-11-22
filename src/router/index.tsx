@@ -35,6 +35,13 @@ const RequestOtpPage = LoadComponent(
 const ManageGrades = LoadComponent(
   React.lazy(() => import("@/views/dashboard/grades/StudentGradesPage"))
 )
+const ManageSubject = LoadComponent(
+  React.lazy(() => import("@/views/dashboard/subject/ManageSubject"))
+)
+const ModulePage = LoadComponent(
+  React.lazy(() => import("@/views/dashboard/modules/ModulePage"))
+)
+
 
 /**
  * Admin Pages
@@ -148,6 +155,14 @@ export default createBrowserRouter([
       {
         path: "/dashboard/section",
         element: ManageSectionPage
+      },
+      {
+        path: "/dashboard/subject",
+        element: ManageSubject
+      },
+      {
+        path: "/dashboard/modules",
+        element: ModulePage
       }
     ],
   },
