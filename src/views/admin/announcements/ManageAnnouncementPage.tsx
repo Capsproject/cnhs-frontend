@@ -61,14 +61,12 @@ const ManageAnnouncementPage: React.FC = () => {
     <>
       {DialogComponent}
       <PageHeader title={userRole === "admin" ? "Manage Announcement" : "Announcement"} />
-      
       <AnnouncementFormModal
         show={formModal.show}
         formType={formModal.formType}
         data={formModal.selectedData}
         disableDC={false}
         refetch={refetch}
-        disableDC={false}
         handleClose={() =>
           handleFormModal({ show: false, selectedData: undefined })
         }

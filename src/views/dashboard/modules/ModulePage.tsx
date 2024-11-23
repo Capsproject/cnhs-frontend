@@ -1,14 +1,35 @@
+import ModuleModal from "@/components/domain/modules/ModuleModal";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { DummyGrade, DummyStudentInfo, teacherGradesTable } from "@/dummy";
 import { useAuthStore } from "@/stores";
+import { FormModal } from "@/types/shared";
 import { StudentInfo } from "@/types/StudentInfo";
-import { Button, Table } from "antd";
+import { Button, Card, Table } from "antd";
+import Meta from "antd/es/card/Meta";
 import React from "react";
 
 const ModulePage: React.FC = () => {
   const isRole = useAuthStore.getState().user?.user_role.name;
   const [studentInfo, setStudentInfo] = React.useState<StudentInfo>();
   const [students, setStudents] = React.useState<any>();
+  const [formModal, setFormModal] = React.useState<FormModal>({
+    show: false,
+    selectedData: undefined,
+  });
+
+  const handleFormModal = (data: FormModal) => {
+    setFormModal(data);
+  }
+
+  const handleUpdate = (data: any) => {
+    handleFormModal({
+      show: true,
+      selectedData: data,
+      formType: "update",
+    })
+  }
+
+
   const tableColumns: any = [
     {
       title: "Name",
@@ -80,6 +101,110 @@ const ModulePage: React.FC = () => {
       },
     },
   ];
+  const modules = [
+    {
+      id: 1,
+      title: "Module 1",
+      description: "Math Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 2,
+      title: "Module 2",
+      description: "Science Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 3,
+      title: "Module 3",
+      description: "English Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 4,
+      title: "Module 4",
+      description: "Filipino Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 5,
+      title: "Module 5",
+      description: "PE Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 6,
+      title: "Module 6",
+      description: "Health Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 7,
+      title: "Module 7",
+      description: "Music Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 8,
+      title: "Module 8",
+      description: "Art Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 9,
+      title: "Module 9",
+      description: "Home Economics Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 10,
+      title: "Module 10",
+      description: "Technology and Livelihood Education Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 11,
+      title: "Module 11",
+      description: "Araling Panlipunan Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 12,
+      title: "Module 12",
+      description: "Values Education Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 13,
+      title: "Module 13",
+      description: "Physical Education Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 14,
+      title: "Module 14",
+      description: "Health Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 15,
+      title: "Module 15",
+      description: "Music Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 16,
+      title: "Module 16",
+      description: "Art Quiz",
+      due_date: "August 12, 2021",
+    },
+    {
+      id: 17,
+      title: "Module 17",
+      description: "Home Economics Quiz",
+      due_date: "August 12, 2021",
+    },
+  ];
   React.useEffect(() => {
     if (isRole === "student") {
       const studentinfo = DummyStudentInfo;
@@ -101,89 +226,46 @@ const ModulePage: React.FC = () => {
 
   return (
     <>
-      <PageHeader title={isRole === 'student' ? 'Modules' : 'Manage Modules'} />
-      {isRole === "teacher" && (
-        <>
-          <Table dataSource={students} loading={false} columns={tableColumns} />
-        </>
-      )}
-      {isRole === "student" && (
-        <>
-          <div className="flex flex-row mb-4 justify-between p-5">
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 border rounded-lg items-center justify-center">
-              <img
-                className="object-cover w-20 h-20 rounded-full"
-                src={studentInfo?.profile_picture}
-              />
-              <div>
-                <div className="flex flex-wrap flex-row items-center gap-2">
-                  <span className="text-2xl font-semibold text-black">
-                    {studentInfo?.gradeLevel}
-                  </span>
-                  <span className="text-2xl font-semibold text-black">
-                    {studentInfo?.section}
-                  </span>
-                  <span className="text-2xl font-semibold text-black">
-                    {studentInfo?.studentNumber}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap flex-row items-center gap-2">
-                  <span className="text-2xl font-semibold text-gray-400">
-                    {studentInfo?.lastName}
-                  </span>
-                  <span className="text-2xl font-semibold text-gray-400">
-                    {studentInfo?.firstName}
-                  </span>
-                  <span className="text-2xl font-semibold text-gray-400">
-                    {studentInfo?.middleName}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="flex">
-              <div className="block rounded-lg bg-white p-6 text-gray-700 shadow-secondary-1 ">
-                <label className="text-gray-700 text-lg font-bold mb-2">
-                  Final Grade
-                </label>
-                <div className="w-80">
-                  <input
-                    className="shadow disabled:bg-gray-200 disabled:text-gray-800 text-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    value={studentInfo?.finalGrade}
-                    disabled
+      <PageHeader title={isRole === "student" ? "Modules" : "Manage Modules"} />
+      <ModuleModal 
+        show={formModal.show} 
+        formType={formModal.formType}
+        data={formModal.selectedData}
+        disableDC={false}
+        refetch={() => {}}
+        handleClose={() => setFormModal({ show: false, selectedData: undefined })}
+      />
+      <>
+        {isRole === "teacher" && (
+          <div className="flex mb-4">
+            <Button
+              className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
+              type="primary"
+              onClick={() => handleFormModal({ show: true, formType: "add" })}
+            >
+              Post Module
+            </Button> 
+          </div>
+        )}
+        <div className="flex flex-wrap xl:gap-9 md:gap-4 justify-center gap-3 over-flow-auto  md:overflow-auto sm:overflow-auto">
+          {modules &&
+            modules.map((event: any) => (
+              <Card hoverable key={event.id} style={{ width: 300 }}>
+                <div className="flex mb-5">
+                  <img
+                    alt="example"
+                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                    className="h-40 object-cover w-full"
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flew-row flex-wrap justify-center gap-2">
-            {studentInfo?.grades?.map((student) => (
-              <div className="rounded-lg bg-white p-6 text-gray-700 shadow-secondary-1 ">
-                <div className="mb-4">
-                  <label className="text-gray-700 text-lg font-bold mb-2">
-                    {student.subject}
-                  </label>
-                </div>
-                <div className="flex flex-row gap-1 justify-center">
-                  {Object.entries(student.grades).map(([quarter, grade]) => (
-                    <div className="flex justify-center">
-                      <input
-                        className=" disabled:bg-gray-200 disabled:text-gray-800 text-lg shadow w-12 appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id={quarter}
-                        type="text"
-                        value={grade} // Set value to the grade
-                        disabled
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+                <Card.Meta
+                  title={event.title}
+                  description={event.description}
+                />
+              </Card>
             ))}
-          </div>
-        </>
-      )}
+        </div>
+      </>
     </>
   );
 };
