@@ -68,6 +68,7 @@ const ManageAnnouncementPage: React.FC = () => {
         data={formModal.selectedData}
         disableDC={false}
         refetch={refetch}
+        disableDC={false}
         handleClose={() =>
           handleFormModal({ show: false, selectedData: undefined })
         }

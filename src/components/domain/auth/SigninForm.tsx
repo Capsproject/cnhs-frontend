@@ -91,27 +91,9 @@ export const SigninForm: React.FC = () => {
                   </small>
                 ) : null}
               </div>
-
-              <div className="flex justify-end">
-                Don't have an account?
-                  <Link
-                    to="/auth/request-otp"
-                    className="text-blue-600 underline mt-8"
-                  >
-                    Forgot your password?
-                  </Link>
-              </div>
               <Button type="primary" htmlType="submit" block>
                 Sign In
               </Button>
-              {/* <div className="text-xs text-center mt-4">
-                <p className="">
-                  Don't have an account?
-                  <a href="#" className="ml-1 hover:underline">
-                    Click here
-                  </a>
-                </p>
-              </div> */}
             </form>
           </div>
         </>
