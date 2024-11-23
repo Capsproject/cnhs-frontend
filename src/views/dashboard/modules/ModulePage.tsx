@@ -17,6 +17,11 @@ const ModulePage: React.FC = () => {
     show: false,
     selectedData: undefined,
   });
+  const [ResponseModuleModal, setResponseModuleModal] =
+    React.useState<FormModal>({
+      show: false,
+      selectedData: undefined,
+    });
 
   const handleFormModal = (data: FormModal) => {
     setFormModal(data);
@@ -38,10 +43,13 @@ const ModulePage: React.FC = () => {
     });
   };
 
+  const handleViewResponseModal = (data: FormModal) => {
+    setResponseModuleModal(data);
+  };
   const handleViewResponse = (data: any) => {
-    handleFormModal({
+    handleViewResponseModal({
       show: true,
-      selectedData: data,
+      selectedData: undefined,
       formType: "view-response",
     });
   };
@@ -125,6 +133,7 @@ const ModulePage: React.FC = () => {
       },
     },
   ];
+
   const modules = [
     {
       id: 1,
@@ -262,11 +271,11 @@ const ModulePage: React.FC = () => {
         }
       />
       <StudentResponseModal
-        show={formModal.show}
+        show={ResponseModuleModal.show}
         handleClose={() =>
           setFormModal({ show: false, selectedData: undefined })
         }
-        data={formModal.selectedData}
+        data={ResponseModuleModal.selectedData}
         disableDC={false}
         refetch={() => {}}
       />

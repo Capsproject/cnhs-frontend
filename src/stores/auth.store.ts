@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "@/types/user";
 
-type AuthData = { authToken: string; user: User, profile: string };
+type AuthData = { authToken: string; user: User };
 
 export type AuthStore = {
   authToken?: string;
@@ -29,7 +29,6 @@ export const useAuthStore = create<AuthStore>()(
         return set({
           authToken: data.authToken,
           user: data.user,
-          profile: data.profile,
         });
       },
       GET_AUTH_DATA: () => {
