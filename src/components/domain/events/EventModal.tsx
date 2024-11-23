@@ -1,16 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventService } from "@/services/event.service";
+import { Props } from "@/types/Props";
 import { Modal } from "antd";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-type Props = {
-  show: boolean;
-  formType: "add" | "update" | "view";
-  data?: any;
-  refetch: () => void;
-  handleClose: () => void;
-};
 
 export const EventFormModal: React.FC<Props> = (props) => {
   const [loading, setLoading] = React.useState<boolean>(false);

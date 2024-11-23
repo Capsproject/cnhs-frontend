@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import _, { get } from "lodash";
+import _ from "lodash";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Modal } from "antd";
 import { UserService } from "@/services/user.service";
-import { UserForm } from "@/types/user";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import PROFILE_IMAGE from "@/assets/profile.png";
 import { EditOutlined } from "@ant-design/icons";
 import { Props } from "@/types/Props";
 import { ErrorMessage } from "@hookform/error-message";
-import { clear } from "console";
 
 export const UserAccountFormModal: React.FC<Props> = (props) => {
   const {

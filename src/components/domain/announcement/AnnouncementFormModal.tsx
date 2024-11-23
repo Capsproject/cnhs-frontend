@@ -84,7 +84,6 @@ export const AnnouncementFormModal: React.FC<Props> = (props) => {
       <form className="flex flex-col gap-2" onSubmit={handleFormSubmit}>
         <div className="flex flex-col gap-2">
           <p className="text-sm">
-            
             {props.formType === "add" && (
               <span className="text-red-600 mr-1">*</span>
             )}Title

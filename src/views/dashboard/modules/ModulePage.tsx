@@ -4,9 +4,10 @@ import { DummyGrade, DummyStudentInfo, teacherGradesTable } from "@/dummy";
 import { useAuthStore } from "@/stores";
 import { FormModal } from "@/types/shared";
 import { StudentInfo } from "@/types/StudentInfo";
-import { Button, Card, Table } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Button, Card, Table, Tooltip } from "antd";
+import { DeleteFilled, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import React from "react";
+import StudentResponseModal from "@/components/domain/modules/StudentResponseModal";
 
 const ModulePage: React.FC = () => {
   const isRole = useAuthStore.getState().user?.user_role.name;
@@ -19,16 +20,39 @@ const ModulePage: React.FC = () => {
 
   const handleFormModal = (data: FormModal) => {
     setFormModal(data);
-  }
+  };
 
   const handleUpdate = (data: any) => {
     handleFormModal({
       show: true,
       selectedData: data,
       formType: "update",
-    })
-  }
+    });
+  };
 
+  const handleView = (data: any) => {
+    handleFormModal({
+      show: true,
+      selectedData: data,
+      formType: "view",
+    });
+  };
+
+  const handleViewResponse = (data: any) => {
+    handleFormModal({
+      show: true,
+      selectedData: data,
+      formType: "view-response",
+    });
+  };
+
+  const handleDelete = (id: number) => {
+    handleFormModal({
+      show: true,
+      selectedData: id,
+      formType: "delete",
+    });
+  };
 
   const tableColumns: any = [
     {
@@ -227,13 +251,24 @@ const ModulePage: React.FC = () => {
   return (
     <>
       <PageHeader title={isRole === "student" ? "Modules" : "Manage Modules"} />
-      <ModuleModal 
-        show={formModal.show} 
+      <ModuleModal
+        show={formModal.show}
         formType={formModal.formType}
         data={formModal.selectedData}
         disableDC={false}
         refetch={() => {}}
-        handleClose={() => setFormModal({ show: false, selectedData: undefined })}
+        handleClose={() =>
+          setFormModal({ show: false, selectedData: undefined })
+        }
+      />
+      <StudentResponseModal
+        show={formModal.show}
+        handleClose={() =>
+          setFormModal({ show: false, selectedData: undefined })
+        }
+        data={formModal.selectedData}
+        disableDC={false}
+        refetch={() => {}}
       />
       <>
         {isRole === "teacher" && (
@@ -244,13 +279,37 @@ const ModulePage: React.FC = () => {
               onClick={() => handleFormModal({ show: true, formType: "add" })}
             >
               Post Module
-            </Button> 
+            </Button>
           </div>
         )}
         <div className="flex flex-wrap xl:gap-9 md:gap-4 justify-center gap-3 over-flow-auto  md:overflow-auto sm:overflow-auto">
           {modules &&
             modules.map((event: any) => (
-              <Card hoverable key={event.id} style={{ width: 300 }}>
+              <Card
+                hoverable
+                key={event.id}
+                style={{ width: 300 }}
+                {...(isRole === "student" && {
+                  actions: [
+                    <Tooltip title="View Module">
+                      <EyeOutlined onClick={() => handleView(event)} />
+                    </Tooltip>,
+                  ],
+                })}
+                {...(isRole === "teacher" && {
+                  actions: [
+                    <Tooltip title="Edit Module">
+                      <EditOutlined onClick={() => handleUpdate(event)} />
+                    </Tooltip>,
+                    <Tooltip title="View Response">
+                      <EyeOutlined onClick={() => handleViewResponse(event)} />
+                    </Tooltip>,
+                    <Tooltip title="Delete Module">
+                      <DeleteFilled onClick={() => handleDelete(event.id)} />
+                    </Tooltip>,
+                  ],
+                })}
+              >
                 <div className="flex mb-5">
                   <img
                     alt="example"

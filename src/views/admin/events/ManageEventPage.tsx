@@ -69,6 +69,7 @@ const ManageEventPage: React.FC = () => {
         show={formModal.show}
         formType={formModal.formType}
         data={formModal.selectedData}
+        disableDC={formModal.disableDC}
         refetch={refetch}
         handleClose={() =>
           setFormModal({ show: false, selectedData: undefined })
